@@ -12,7 +12,7 @@ const ContactUsSection = () => {
         </div>
 
         {/* form */}
-        <div>
+        <div className='w-[40%]' >
             <ContactUsForm/>
         </div>
 

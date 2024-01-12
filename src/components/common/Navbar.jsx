@@ -28,7 +28,6 @@ const Navbar = () => {
     const {user} = useSelector( (state) => state.profile );
     const {totalItems} = useSelector((state) => state.cart);
 
-
     // state variable for changing tab
     const [ tab, setTab ] = useState(NavbarLinks[0].title)
 
@@ -54,8 +53,8 @@ const Navbar = () => {
 
 
   return (
-    <div className='border-b border-richblack-700  ' >
-        <div className='flex w-11/12 max-w-maxContent items-center justify-between mx-auto py-2' >
+    <div className='border-b border-richblack-700 bg-richblack-800  ' >
+        <div className='flex w-11/12 max-w-maxContent items-center justify-between mx-auto py-2 ' >
 
             {/* image */}
             <div>
@@ -151,7 +150,7 @@ const Navbar = () => {
 
                 {/* we are login and showing profile  */}
                 {
-                    user !== null && (
+                    token !== null && (
                         <ProfileDropdown/>
                     )
                 }

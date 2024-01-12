@@ -6,6 +6,7 @@ import {user} from "../apis"
 import {toast} from "react-hot-toast"
 
 
+
 // sendOtp
 export const sendOtp = (email, navigate) => {
     return async (dispatch) => {
@@ -45,7 +46,7 @@ export const login = (email, password, navigate) => {
             if( !responce.data.success ){
                 throw new Error(responce.data.message);
             }
-
+            
             toast.success("Login Successfully");
 
             dispatch(setToken(responce.data.token));
@@ -53,7 +54,14 @@ export const login = (email, password, navigate) => {
             dispatch(setProfile(responce.data.user));
 
             localStorage.setItem("token", JSON.stringify(responce.data.token));
-            localStorage.setItem("user", JSON.stringify(responce.data.user));
+            localStorage.setItem("user", JSON.stringify(responce.data.user)); 
+
+            // calling auto logout component            
+            setTimeout( () => {
+                console.log("Auto logout triggered");
+                dispatch(logout(navigate))
+            }, 7200000 )
+       
             navigate("/dashboard/my-profile");
         }
         catch(error){
@@ -62,7 +70,7 @@ export const login = (email, password, navigate) => {
             navigate("/login");
         }
         toast.dismiss(toastID);
-        dispatch(setLoading(false));
+        dispatch(setLoading(false)); 
     }
 }
 
@@ -72,6 +80,7 @@ export const logout = (navigate) => {
         dispatch(setLoading(true));
         const toastID = toast.loading("Loading...");
         try{
+            console.log("logout trigger");
             dispatch(setToken(null));
 
             dispatch(setProfile(null));

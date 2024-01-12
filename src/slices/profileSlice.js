@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 import { json } from "react-router-dom";
 
 const initialState = {
-    user: localStorage.getItem("user") ? (JSON.parse(localStorage.getItem("user"))) : (null),
+    user: localStorage.getItem("user")? (JSON.parse(localStorage.getItem("user"))): null,
+    loading:false,
 }
 
 export const profileSlice = createSlice({
@@ -11,9 +12,12 @@ export const profileSlice = createSlice({
     reducers:{
         setProfile(state, value){
             state.user = value.payload;
+        },
+        setLoading(state, value){
+            state.loading = value.payload;
         }
     }
 })
 
-export const {setProfile} = profileSlice.actions;
+export const {setProfile, setLoading} = profileSlice.actions;
 export default profileSlice.reducer;

@@ -7,9 +7,9 @@ const LearningGrid = () => {
   return (
     <div className='w-11/12 max-w-maxContent mx-auto m-20' >
         {/* upper wala */}
-        <div className= ' flex flex-col gap-10 lg:flex-row  lg:justify-between lg:gap-0' >
+        <div className= ' flex flex-col gap-10 items-center lg:flex-row lg:items-start lg:justify-between lg:gap-0' >
             {/* left */}
-            <div className='flex flex-col gap-3 lg:w-[44%] ' >
+            <div className='flex flex-col gap-3 w-[44%] ' >
                 <h1 className='font-semibold text-4xl text-richblack-5 ' >World-Class Learning for <HighLightedText text={"Anyone, Anywhere"} /></h1>
                 <p className='font-medium text-base text-richblack-300 mb-2 ' >Studynotion partners with more than 275+ leading universities and companies to bring flexible, affordable, job-relevant online learning to individuals and organizations worldwide.</p>
                 <CTAbutton active={true} linkto={"/"} >
@@ -18,7 +18,7 @@ const LearningGrid = () => {
                 
             </div>
             {/* right */}
-            <div className='flex flex-col lg:flex-row  lg:items-center w-[50%] ' >
+            <div className='flex flex-col w-[100%]  lg:flex-row  items-center lg:w-[50%] ' >
                 <LearningGridBox 
                     heading={"Curriculum Based on Industry Needs"} 
                     subHeading={"Save time and money! The Belajar curriculum is made to be easier to understand and in line with industry needs."} 
@@ -34,10 +34,10 @@ const LearningGrid = () => {
         </div>
 
         {/* nicha wala */}
-        <div className='flex  flex-col-reverse lg:flex-row-reverse ' >
+        <div className='flex  flex-col-reverse items-center lg:flex-row-reverse ' >
             
             {/* right */}
-            <div className='flex flex-col lg:flex-row w-[50%] ' >
+            <div className='flex flex-col lg:flex-row lg:w-[50%] ' >
                 <LearningGridBox 
                     heading={`Rating "Auto-grading"`} 
                     subHeading={"You will immediately get feedback during the learning process without having to wait for an answer or response from the mentor."} 

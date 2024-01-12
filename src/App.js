@@ -9,6 +9,7 @@ import ForgotPassword from "./Pages/ForgotPassword"
 import UpdatePassword from "./Pages/UpdatePassword";
 import VerifyEmail from "./Pages/VerifyEmail";
 import About from "./Pages/About";
+import ContactUs from "./Pages/ContactUs";
 
 
 function App() {
@@ -73,10 +74,23 @@ function App() {
         <Route
           path="/about"
           element={
-            <OpenRoute>
-              <About/>
-            </OpenRoute>
+              <About/> 
           }
+        />
+
+        {/* contact us page */}
+        <Route
+          path="/contact"
+          element={            
+            <ContactUs/>            
+          }
+        />
+
+
+        {/* dashboard my profile */}
+        <Route 
+          path="dashboard/my-profile"
+          // element={<MyProfile/>}
         />
 
       </Routes>
