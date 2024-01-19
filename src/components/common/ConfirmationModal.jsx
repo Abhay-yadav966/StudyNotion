@@ -1,9 +1,11 @@
 import React from 'react'
+import IconBtn from './IconBtn';
 
 const ConfirmationModal = ({modalData}) => {
+    
   return (
     <div>
-        <div>
+        <div className='text-white' >
             <h2>{modalData.heading}</h2>
             <p>{modalData.subHeading}</p>
             <div>

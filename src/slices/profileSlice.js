@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { json } from "react-router-dom";
 
 const initialState = {
     user: localStorage.getItem("user")? (JSON.parse(localStorage.getItem("user"))): null,

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom';
+import Sidebar from '../components/core/Dashboard/Sidebar'; 
 
 const Dashboard = () => {
   return (
@@ -9,8 +10,8 @@ const Dashboard = () => {
         <Sidebar/>
 
         {/* my profile section*/}
-        <div>
-          <div className='mx-auto w-11/12 max-w-[1000px] py-10 ' >
+        <div className='w-full' >
+          <div className='mx-auto w-11/12 max-w-[1000px] py-10' >
               <Outlet/>
           </div>
         </div>

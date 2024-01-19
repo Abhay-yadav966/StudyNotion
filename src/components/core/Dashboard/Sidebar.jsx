@@ -5,6 +5,7 @@ import {logout} from '../../../services/operations/authAPI'
 import { useDispatch, useSelector } from 'react-redux'
 import { VscSignOut } from "react-icons/vsc";
 import ConfirmationModal from '../../common/ConfirmationModal'
+import { useNavigate } from 'react-router-dom'
 
 const Sidebar = () => {
 
@@ -21,12 +22,13 @@ const Sidebar = () => {
   const [ currentClicked, setCurrentClicked ] = useState(sidebarLinks[0].name);
 
   return (
-    <div className='h-full max-w-[222px] flex flex-col gap-3 border-r border-richblack-700 bg-richblack-800 py-10' >
+    <div className='h-full max-w-[222px] flex flex-col gap-5 border-r border-richblack-700 bg-richblack-800 py-10' >
           {/* upper */}
           <div className='flex flex-col ' >
             {
               sidebarLinks.map((element) => {
-                if(element.type && user?.accountType === element.type){
+                if(element.type && user?.accountType !== element.type) return null;
+                  
                   return(
                     <SidebarLinks
                       key={element.id}
@@ -35,21 +37,12 @@ const Sidebar = () => {
                       setCurrentClicked = {setCurrentClicked}
                     />
                   )
-                }
-
-                {/* this sidebar for rendring my profile which does not have specific type and has to render for every user */}
-                <SidebarLinks
-                  key={element.id}
-                  element={element}
-                  currentClicked={currentClicked}
-                  setCurrentClicked={setCurrentClicked}
-                />
               })
             }
           </div>
 
           {/* middle line */}
-          <div className=' w-[33%] mx-auto border-t border-richblack-800 ' ></div>
+          <div className=' w-[83%] mx-auto border-t border-richblack-600 ' ></div>
 
           {/* lower part */}
           <div>
@@ -67,12 +60,15 @@ const Sidebar = () => {
               btn2Text:"Cancel",
               btn1Handler:() => dispatch(logout(navigate)),
               btn2Handler:() => setConfirmationModal(null),
-            })} >
+            })}
+            
+            className='flex gap-3 py-2 px-8 items-center text-richblack-300 '
+            >
               <VscSignOut />
               <p>Logout</p>
             </button>
           </div>
-
+          
           {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   )

@@ -10,6 +10,10 @@ import UpdatePassword from "./Pages/UpdatePassword";
 import VerifyEmail from "./Pages/VerifyEmail";
 import About from "./Pages/About";
 import ContactUs from "./Pages/ContactUs";
+import MyProfile from "./components/core/Dashboard/MyProfile";
+import PrivateRoute from "./components/core/Auth/PrivateRoute";
+import Dashboard from "./Pages/Dashboard";
+import Error from './Pages/Error'
 
 
 function App() {
@@ -86,11 +90,29 @@ function App() {
           }
         />
 
+        {/* Dashboard -> nested routing */} 
+        <Route
+          element={
+            <PrivateRoute>
+              <Dashboard/>  
+            </PrivateRoute>
+          }
+        >
 
-        {/* dashboard my profile */}
-        <Route 
-          path="dashboard/my-profile"
-          // element={<MyProfile/>}
+          {/* dashboard my profile */}
+          <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
+
+        </Route>
+
+
+
+
+        {/* if someone has entered wrong path that does not exist */}
+        <Route
+          path="*"
+          element={
+            <Error/>
+          }
         />
 
       </Routes>
