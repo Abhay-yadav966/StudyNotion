@@ -24,3 +24,11 @@ In the following sections, we will cover the technical details of the platform, 
 ```
     git clone https://github.com/Abhay-yadav966/StudyNotion.git
 ```
+2. Install the required packages.
+   ```
+   cd StudyNotion
+   npm install
+
+   cd server
+   npm install
+   ```
