@@ -15,3 +15,8 @@ In the following sections, we will cover the technical details of the platform, 
 ![Screenshot (198)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/6db49b68-8323-4f06-9366-98dfac4f932b)
 ![Screenshot (199)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/f79c9653-1c7d-40d3-bb03-0aed4cbd9b51)
 ![Screenshot (200)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/8d65e7a3-94ee-45c8-b28f-d493729a320f)
+## Important
+- Backend is in the server folder.
+- First create the categories e.g. web dev, Python, etc. (without categories courses cannot be added). To create categories create an Admin account and go to dashboard then admin panel.
+- To create an Admin account first sign up with a student or instructor account then go to your Database under the users model and change that 'accountType' to 'Admin'.
+- 
