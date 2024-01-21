@@ -13,3 +13,4 @@ In the following sections, we will cover the technical details of the platform, 
 - Instructor Dashboard: Instructors have access to a comprehensive dashboard to view information about their courses, students, and income. The dashboard provides charts and visualizations to present data clearly and intuitively. Instructors can monitor the total number of students enrolled in each course, track course performance, and view their income generated from course sales.
 ## Screenshots
 ![Screenshot (198)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/6db49b68-8323-4f06-9366-98dfac4f932b)
+![Screenshot (199)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/f79c9653-1c7d-40d3-bb03-0aed4cbd9b51)
