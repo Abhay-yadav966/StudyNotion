@@ -42,3 +42,5 @@ In the following sections, we will cover the technical details of the platform, 
 6. Open the project in your browser at [http://localhost:3000](http://localhost:3000) to view your project.
 
 You can add your own tailwind.config.js file to customize your Tailwind setup.
+## Contributing
+Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
