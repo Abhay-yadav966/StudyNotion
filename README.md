@@ -33,9 +33,10 @@ In the following sections, we will cover the technical details of the platform, 
    npm install
    ```
 3. Set up the environment variables:
-    Create a .env file in the root directory and /server Add the required environment variables, such as database connection details, JWT secret, and any other necessary configurations check .env.example files for more info.
-4. Start the development server.
+
+   Create a .env file in the root directory and /server Add the required environment variables, such as database connection details, JWT secret, and any other necessary configurations check .env.example files for more info.
+5. Start the development server.
    ```
     npm run dev
    ```
-5. Open the project in your browser at `http://localhost:3000` to view your project.
+6. Open the project in your browser at `http://localhost:3000` to view your project.
