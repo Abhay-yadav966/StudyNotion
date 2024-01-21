@@ -21,4 +21,6 @@ In the following sections, we will cover the technical details of the platform, 
 - To create an Admin account first sign up with a student or instructor account then go to your Database under the users model and change that 'accountType' to 'Admin'.
 ## Installation
 1. Clone the repository to your local machine.
-``` git clone https://github.com/Abhay-yadav966/StudyNotion.git ```
+```
+git clone https://github.com/Abhay-yadav966/StudyNotion.git
+```
