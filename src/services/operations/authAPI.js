@@ -58,7 +58,7 @@ export const login = (email, password, navigate) => {
 
             // calling auto logout component            
             setTimeout( () => {
-                console.log("Auto logout triggered");
+                console.log("Auto logout triggered"); 
                 dispatch(logout(navigate))
             }, 7200000 )
        

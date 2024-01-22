@@ -13,7 +13,8 @@ import ContactUs from "./Pages/ContactUs";
 import MyProfile from "./components/core/Dashboard/MyProfile";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./Pages/Dashboard";
-import Error from './Pages/Error'
+import Error from './Pages/Error';
+import Settings from "./components/core/Dashboard/Settings/Settings";
 
 
 function App() {
@@ -101,6 +102,9 @@ function App() {
 
           {/* dashboard my profile */}
           <Route path="/dashboard/my-profile" element={<MyProfile/>}/>
+
+          {/* dashboard settings */}
+          <Route path="/dashboard/settings" element={<Settings/>}/>
 
         </Route>
 

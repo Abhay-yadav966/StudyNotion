@@ -197,7 +197,7 @@ exports.logIn = async (req, res) => {
         }
 
         // user already exists or not
-        const user = await User.findOne({email:email});
+        const user = await User.findOne({email:email}).populate("additionDetails").exec();
 
         if(!user){
             return res.status(404).json({
@@ -218,7 +218,7 @@ exports.logIn = async (req, res) => {
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
                 expiresIn:"2h",
             });
-
+            console.log("token", token);
             user.token = token;
             user.password = undefined;  
 

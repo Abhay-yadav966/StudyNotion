@@ -18,9 +18,6 @@ const Sidebar = () => {
   // fetching user data form slices
   const {user} = useSelector((state) => state.profile);
 
-  // creating state variable to show which is selected
-  const [ currentClicked, setCurrentClicked ] = useState(sidebarLinks[0].name);
-
   return (
     <div className='h-full max-w-[222px] flex flex-col gap-5 border-r border-richblack-700 bg-richblack-800 py-10' >
           {/* upper */}
@@ -33,8 +30,6 @@ const Sidebar = () => {
                     <SidebarLinks
                       key={element.id}
                       element={element}
-                      currentClicked = {currentClicked}
-                      setCurrentClicked = {setCurrentClicked}
                     />
                   )
               })
@@ -48,8 +43,6 @@ const Sidebar = () => {
           <div>
             <SidebarLinks
               element={{name:"Settings", path:"/dashboard/settings", icon:"VscSettingsGear"}}
-              currentClicked={currentClicked}
-              setCurrentClicked={setCurrentClicked}
             />
 
             {/* logout modal */}
