@@ -18,3 +18,4 @@ This project is intended as a learning tool and can be used as a project for edu
 - Course Data Storage: Cloudinary
 - Profile Picture Generation: Dicebear API
 ## Screenshots
+![Screenshot (198)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/9412db4c-0d21-405b-967c-3e39c5c5c534)
