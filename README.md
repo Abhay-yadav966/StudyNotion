@@ -39,4 +39,5 @@ This project is intended as a learning tool and can be used as a project for edu
       npm install
    ```
 3. Set up the environment variables:
+
    Create a .env file in the root directory and /server Add the required environment variables, such as database connection details, JWT secret, and any other necessary configurations.
