@@ -20,3 +20,4 @@ This project is intended as a learning tool and can be used as a project for edu
 ## Screenshots
 ![Screenshot (198)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/9412db4c-0d21-405b-967c-3e39c5c5c534)
 ![Screenshot (199)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/6106d60f-c0c1-43cc-8da5-f88e28d9bd4d)
+![Screenshot (200)](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/b4e0d291-ff35-4332-98c5-6d2f174fe58d)
