@@ -48,5 +48,5 @@ This project is intended as a learning tool and can be used as a project for edu
 5. Open the project in your browser at [http://localhost:3000](http://localhost:3000) to view your project.
 
 You can add your own tailwind.config.js file to customize your Tailwind setup.
-## Contributing
+## Contributions
 Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
