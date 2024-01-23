@@ -41,3 +41,8 @@ This project is intended as a learning tool and can be used as a project for edu
 3. Set up the environment variables:
 
    Create a .env file in the root directory and /server Add the required environment variables, such as database connection details, JWT secret, and any other necessary configurations.
+4. Start the development server.
+   ```
+     npm run dev
+   ```
+5. Open the project in your browser at [http://localhost:3000] to view your project.
