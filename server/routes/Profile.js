@@ -23,5 +23,5 @@ router.get("/getEnrolledCourses", auth, getEnrolledCourses);
 
 // update display picture
 router.put("/updateDisplayPicture", auth, updateDisplayPicture);
-
+ 
 module.exports = router; 

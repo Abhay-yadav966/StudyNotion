@@ -260,10 +260,10 @@ exports.logIn = async (req, res) => {
 exports.changePassword = async (req, res) => {
     try{
         // fetch data from request
-        const {oldPassword, newPassword, confirmNewPassword} = req.body;
+        const {oldPassword, newPassword} = req.body;
         // validation
 
-        if(!oldPassword || !newPassword || !confirmNewPassword){
+        if(!oldPassword || !newPassword ){
             return res.status(403).json({
                 success:false,
                 message:"All fields are required",
@@ -285,12 +285,12 @@ exports.changePassword = async (req, res) => {
         }
 
         // Match newPassword and confirmNewPassword
-        if(newPassword !== confirmNewPassword){
-            return res.status(400).json({
-                success:false,
-                message:"The password and confirm password does not match",
-            });
-        }
+        // if(newPassword !== confirmNewPassword){
+        //     return res.status(400).json({
+        //         success:false,
+        //         message:"The password and confirm password does not match",
+        //     });
+        // }
 
         // update Password
         const encryptedPassword = await bcrypt.hash(newPassword, 10);

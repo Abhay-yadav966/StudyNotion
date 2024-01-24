@@ -50,7 +50,7 @@ export const login = (email, password, navigate) => {
             toast.success("Login Successfully");
 
             dispatch(setToken(responce.data.token));
-
+            console.log("token", responce.data.token);
             dispatch(setProfile(responce.data.user));
 
             localStorage.setItem("token", JSON.stringify(responce.data.token));

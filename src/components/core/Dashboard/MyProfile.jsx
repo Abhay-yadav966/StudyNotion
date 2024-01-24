@@ -21,7 +21,7 @@ const MyProfile = () => {
             <div className='flex justify-between items-center bg-richblack-800 border border-richblack-700 rounded-lg p-8' >
                 {/* left */}
                 <div className='flex gap-6 items-center ' >
-                    <img src={user?.image} alt={`Profile-${user?.firstName}`}  className='w-20 rounded-full ' />
+                    <img src={user?.image} alt={`Profile-${user?.firstName}`}  className='w-20 aspect-square object-cover rounded-full ' />
                     <div className='flex flex-col gap-1' >
                         <p className='font-semibold text-lg text-richblack-5' >{user?.firstName + " " + user?.lastName}</p>
                         <p className='font-normal text-sm text-richblack-300' >{user?.email}</p> 
