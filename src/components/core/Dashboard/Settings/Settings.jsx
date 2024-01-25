@@ -6,6 +6,7 @@ import CancelBtn from '../CancelBtn';
 import ChangeProfilePicture from './ChangeProfilePicture';
 import {updateProfile} from '../../../../services/operations/SettingsAPI'
 import UpdatePassword from './UpdatePassword';
+import DeleteAccount from './DeleteAccount';
 
 const Settings = () => {
 
@@ -194,6 +195,9 @@ const Settings = () => {
 
         {/* change password */}
         <UpdatePassword/>
+
+        {/* delete account */}
+        <DeleteAccount/>
     </div>
   )
 }

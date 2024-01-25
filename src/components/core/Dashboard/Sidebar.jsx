@@ -61,8 +61,8 @@ const Sidebar = () => {
               <p>Logout</p>
             </button>
           </div>
-          
-          {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+          {console.log("confirmation model data ---> ", confirmationModal)}
+          {confirmationModal && (<ConfirmationModal modalData={confirmationModal} />)}
     </div>
   )
 }

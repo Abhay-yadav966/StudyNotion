@@ -59,11 +59,11 @@ export function updateProfile(token, formData) {
       if (!response.data.success) {
         throw new Error(response.data.message)
       }
-      const userImage = response.data.updatedUserDetails.image
-        ? response.data.updatedUserDetails.image
-        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updatedUserDetails.firstName} ${response.data.updatedUserDetails.lastName}`
+      const userImage = response.data.updateProfile.image
+        ? response.data.updateProfile.image
+        : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.updateProfile.firstName} ${response.data.updateProfile.lastName}`
       dispatch(
-        setProfile({ ...response.data.updatedUserDetails, image: userImage })
+        setProfile({ ...response.data.updateProfile, image: userImage })
       )
       toast.success("Profile Updated Successfully")
     } catch (error) {
@@ -97,6 +97,7 @@ export function deleteProfile(token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     try {
+      console.log("inside the delete profile apis");
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
         Authorization: `Bearer ${token}`,
       })

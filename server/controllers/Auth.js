@@ -297,9 +297,7 @@ exports.changePassword = async (req, res) => {
         const updatedDetails = await User.findByIdAndUpdate(
                                             {_id:userId},
                                             {
-                                                $push:{
-                                                    password:encryptedPassword,
-                                                }
+                                                password:encryptedPassword,    
                                             },
                                             {new:true},
         );
@@ -307,11 +305,12 @@ exports.changePassword = async (req, res) => {
 
         // send email
         await mailSender(
-            updatedUserDetails.email,
-			passwordUpdated(
-				updatedUserDetails.email,
-				`Password updated successfully for ${updatedUserDetails.firstName} ${updatedUserDetails.lastName}`
-			)
+            updatedDetails.email,
+			`Password updated successfully for ${updatedDetails.firstName} ${updatedDetails.lastName}`,
+            `Dear ${updatedDetails.firstName} ${updatedDetails.lastName}<br><br>
+            This is to confirm that the password for your account has been successfully changed. Your account is now secured with the new password that you have set.
+            <br><br>If you did not change your password, please contact us immediately to report any unauthorized access to your account.`
+			
         );
 
         
