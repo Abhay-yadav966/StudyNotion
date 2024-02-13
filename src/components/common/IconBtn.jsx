@@ -13,13 +13,13 @@ const IconBtn = ({
     <button onClick={onclick}
         disabled={disabled}
         type={type}
-        className=' flex flex-row gap-3 items-center text-[16px] px-5 py-2 rounded-lg font-semibold bg-yellow-50 text-black' 
+        className={` flex flex-row gap-3 items-center text-[16px] px-5 py-2 rounded-lg font-semibold  ${outline ? 'text-yellow-50 bg-transparent border border-yellow-50 ' : '  text-black bg-yellow-50 '} `} 
      >
         {
             children ? (<>
                 {children}
             </>) : 
-            {text}
+            ({text})
         }
     </button>
   )

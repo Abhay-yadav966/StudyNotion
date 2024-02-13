@@ -73,7 +73,7 @@ exports.sendOTP = async (req, res) => {
             message:"Something went wrong in Otp Generator",
         });
     }
-}
+} 
  
 
 // SignUp
@@ -273,7 +273,7 @@ exports.changePassword = async (req, res) => {
 
         // check old password is correct or not
         const userId = req.user.id;
-        const userDetails = await User.findById({_id:userId});
+        const userDetails = await User.findById({_id:userId}); 
 
         const isPasswordMatch = await bcrypt.compare(oldPassword, userDetails.password);
 
@@ -311,7 +311,7 @@ exports.changePassword = async (req, res) => {
             This is to confirm that the password for your account has been successfully changed. Your account is now secured with the new password that you have set.
             <br><br>If you did not change your password, please contact us immediately to report any unauthorized access to your account.`
 			
-        );
+        ); 
 
         
         // return res

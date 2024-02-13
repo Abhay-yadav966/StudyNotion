@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // impoting controllers
-const {createCourse, getAllCourses, getCourseDetails} = require("../controllers/Course");
+const {createCourse, updateCourse,getAllCourses, getCourseDetails} = require("../controllers/Course");
 
 // importing category controller
 const {createCategory, getAllCategories, categoryPageDetails} = require("../controllers/Category");
@@ -26,6 +26,9 @@ const {auth, isStudent, isInstructor, isAdmin} = require("../middlewares/auth");
 
 // create course - course can only be created by instructor
 router.post("/createCourse", auth, isInstructor, createCourse);
+
+// update course - can done by only instructor
+router.put("/editCourse", auth, isInstructor, updateCourse);
 
 // getAllCourses
 router.get("/getAllCourses", getAllCourses);

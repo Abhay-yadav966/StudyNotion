@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 const RequirementField = ({label, register, errors, name, setValue, getValues}) => {
+
+    // fetching data
+    const { editCourse, course } = useSelector((state) => state.course );
 
     // state variable for storing current requirement
     const [requirement, setRequirement] = useState("");
@@ -12,7 +16,12 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
 
     // register for first input
     useEffect( () => {
-        register(name, {required:true})
+        register(name, {required:true});
+
+        if( editCourse ){
+            setValue(name, course?.instructions);
+        }
+
     }, [] );
 
     // updating on the change of requirement list
@@ -22,6 +31,7 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
 
     // fn for add requirement
     const handleAddRequirement = () => {
+
         // checking data is present or not
         if( requirement ){
             // adding data to array
@@ -43,20 +53,20 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
 
   return (
     <div>
-        <label>
-            <p>{label}<sup>*</sup></p>
+        <label className=' flex flex-col items-start gap-1' >
+            <p className='text-base text-richblack-5' >{label}<sup className='text-pink-400' > *</sup></p>
             <input 
                 type="text" 
                 value={requirement}
                 onChange={(e) => setRequirement(e.target.value)}
-                className='text-black'
+                className='rounded-lg p-3 bg-richblack-700 inputShadow font-medium text-base text-richblack-5 outline-none w-full'
             />
 
             {/* add button */}
             <button 
                 type='button'
                 onClick={handleAddRequirement}
-                className='font-semibold text-yellow-50' 
+                className='font-semibold text-yellow-50 mt-2 ' 
             >
                 Add
             </button>
@@ -65,12 +75,12 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
             <ul>
                 {
                     requirementList.length > 0 && (requirementList.map( (element, index) => (
-                        <li key={index} >
+                        <li key={index} className='flex gap-2 items-center ' >
                             <p>{element}</p>
                             <button
                                 type='button'
                                 onClick={ () => handleRemoveRequirement(index)}
-                                className=''
+                                className='text-xs text-richblack-300 '
                             >
                                 clear
                             </button>
@@ -82,7 +92,7 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
             {/* errors */}
             {
                 errors[name] && (
-                    <span>{label} is required</span>
+                    <span className='text-pink-200 text-xs mt-1 pl-2 ' >{label} is required</span>
                 )
             }
         </label>

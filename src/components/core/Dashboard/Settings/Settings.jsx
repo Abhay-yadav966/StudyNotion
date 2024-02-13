@@ -24,6 +24,8 @@ const Settings = () => {
         formState:{errors, isSubmitSuccessful}
     } = useForm();
 
+    console.log("Setting error ->", errors);
+
     // form submit fn.
     const profileDataSubmit = async (data) => {
         try{

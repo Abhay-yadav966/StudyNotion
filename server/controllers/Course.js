@@ -3,6 +3,7 @@ const Course = require("../models/Course");
 const Category = require("../models/Category");
 const User = require("../models/User");
 const {uploadImageToCloudinary} = require("../utils/imageUploader");
+const { FaChampagneGlasses } = require("react-icons/fa6");
 require("dotenv").config();
 
 // create course
@@ -13,13 +14,14 @@ exports.createCourse = async (req, res) => {
         const {courseName, courseDescription, whatYouWillLearn, price, tag, category} = req.body;
 
         // fetch image
-        const thumbnail = req.files.thumbnailImage;
+        const thumbnail = req.files.thumbnail;
 
         // validation
         if( !courseName || !courseDescription || !whatYouWillLearn || !price || !tag || !thumbnail || !category){
             return res.status(400).json({
                 success:false,
                 message:"All fields are required",
+
             });
         }
 
@@ -100,6 +102,22 @@ exports.createCourse = async (req, res) => {
             success:false,
             error:err.message,
             message:"Something went wrong while creating course",
+        });
+    }
+}
+
+// update course
+exports.updateCourse = async (req, res) => {
+    try{
+        return res.status(200).json({
+            message:"Abhay",
+        })
+    }
+    catch( error ){
+        return res.status(500).json({
+            success:false,
+            error:error.message,
+            message:"Something went wrong in updating course",
         });
     }
 }
