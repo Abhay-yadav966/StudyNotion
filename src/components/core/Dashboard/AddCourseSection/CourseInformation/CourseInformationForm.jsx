@@ -24,8 +24,8 @@ const CourseInformationForm = () => {
   const [ loading, setLoading ] = useState(false);
 
   // categories
-  // const [ courseCategories, setCourseCategories ] = useState([]);
-  const {courseCategories} = useSelector((state) => state.course );
+  const [ courseCategories, setCourseCategories ] = useState([]);
+  // const {courseCategories} = useSelector((state) => state.course );
   // console.log("categories slice", courseCategories);
 
   // using useForm
@@ -37,8 +37,6 @@ const CourseInformationForm = () => {
     formState:{errors}, 
   } = useForm();
 
-  console.log("Errors->", errors);
-
   // get categories
   const getCategories = async () => { 
     try{
@@ -46,7 +44,7 @@ const CourseInformationForm = () => {
       const categories = await fetchCourseCategories();
       // set categories data into state variable and also preventing from set empty array
       if ( categories.length > 0 ){
-        dispatch(setCourseCategories(categories));
+        setCourseCategories(categories);
       }
       setLoading(false);
     }
@@ -61,14 +59,14 @@ const CourseInformationForm = () => {
     getCategories();
 
     if(editCourse){
-      setValue("courseTitle", course.courseName);
-      setValue("courseShortDesc", course.courseDescription);
-      setValue("coursePrice", course.price);
-      setValue("courseTags", course.tag);
-      setValue("courseBenefits", course.whatYouWillLearn);
-      setValue("courseCategory", course.category);
-      setValue("courseRequirement", course.instructions);
-      setValue("courseImage", course.thumbnail);
+      setValue("courseTitle", course?.courseName);
+      setValue("courseShortDesc", course?.courseDescription);
+      setValue("coursePrice", course?.price);
+      setValue("courseTags", course?.tag);
+      setValue("courseBenefits", course?.whatYouWillLearn);
+      setValue("courseCategory", course?.category);
+      setValue("courseRequirement", course?.instructions);
+      setValue("courseImage", course?.thumbnail);
     }
 
   }, [] );
@@ -80,10 +78,10 @@ const CourseInformationForm = () => {
     const currentValues = getValues();
 
     if( currentValues.courseTitle !== course.courseName || currentValues.courseShortDesc !== course.courseDescription || 
-       currentValues.coursePrice !== course.price || //currentValues.courseTags.toString() !== course.tag.toString() || 
+       currentValues.coursePrice !== course.price || currentValues.courseTags.toString() !== course.tag.toString() || 
        currentValues.courseBenefits !== course.whatYouWillLearn || 
        currentValues.courseCategory !== course.category || currentValues.courseRequirement.toString() !== course.instructions.toString() 
-       //  || currentValues.courseImage !== course.thumbnail 
+       || currentValues.courseImage !== course.thumbnail 
       ){
       return true;
     }
@@ -139,13 +137,10 @@ const CourseInformationForm = () => {
           formData.append("thumbnail", data.courseImage);
         }
 
-        if( currentValues.courseTags !== course.tag){
-          formData.append("tag", JSON.stringify(data.courseTags));
-        }
   
         setLoading(true);
         const result = await editCourseDetails(formData, token);
-  
+        console.log("value of result ->" ,result);
         if(result){
           dispatch(setStep(2));
           dispatch(setCourse(result));
@@ -173,7 +168,7 @@ const CourseInformationForm = () => {
 
 
     setLoading(true);
-    const result = await addCourseDetails(formData, token)
+    const result = await addCourseDetails(formData, token);
     if(result){
       dispatch(setStep(2));
       dispatch(setCourse(result));
@@ -250,7 +245,7 @@ const CourseInformationForm = () => {
               {/* default option for instructing select a categories */}
               <option value="" >Choose a Category</option>
               {
-                !loading && courseCategories.map( (element, index) => (
+                !loading && courseCategories?.map( (element, index) => (
                   <option key={index} value={element?._id} >
                     {element?.name}
                   </option>
@@ -318,9 +313,24 @@ const CourseInformationForm = () => {
           />
 
           {/* buttons */}
-          <div className='flex justify-end' >
+
+          <div className='flex justify-end gap-2 ' >
+
+            {
+              editCourse && (
+                <button
+                  type='button'
+                  onClick={() => dispatch(setStep(2))}
+                  disabled={loading}
+                  className='flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900'
+                >
+                  Continue Wihout Saving
+                </button>
+              )
+            }
+
             <IconBtn type='submit' >
-              Next <FaAngleRight/>
+              { editCourse ? "Save Changes" : "Next" } <FaAngleRight/>
             </IconBtn>
           </div>
 

@@ -91,6 +91,7 @@ const CourseBuilder = () => {
 
     // update values
     if( result ){
+      console.log("The result ->", result); //.....
       dispatch(setCourse(result));
       setEditSectionName(false);
       setValue("sectionName", "");
@@ -114,18 +115,18 @@ const CourseBuilder = () => {
   }
 
   return (
-    <div>
-         <h3>Course Builder</h3>
+    <div className='border border-richblack-700 bg-richblack-800 rounded-lg p-6 mt-16 mb-10 ' >
+         <h3 className='font-semibold text-2xl text-richblack-5' >Course Builder</h3>
          <form onSubmit={handleSubmit(onSubmit)} >
             {/* input */}
-            <div>
-              <label>
-                <p>Section Name <sup>*</sup></p>
+            <div className='mt-7 mb-4 ' >
+              <label className='flex flex-col gap-1' >
+                <p className='text-base text-richblack-5' >Section Name <sup className='text-pink-400' > *</sup></p>
                 <input 
                   type="text"
                   placeholder='Add a section to build your course'
                   {...register("sectionName", {required:true})}
-                  className=''
+                  className='rounded-lg p-3 bg-richblack-700 inputShadow font-medium text-base text-richblack-5 outline-none '
                 />
 
 
@@ -139,7 +140,7 @@ const CourseBuilder = () => {
             </div>
 
             {/* button */}
-            <div className='flex gap-4 items-end' >
+            <div className='flex gap-4 items-end pb-3 ' >
               <IconBtn
                 type="submit"
                 outline={true}
@@ -173,7 +174,7 @@ const CourseBuilder = () => {
           }
 
           {/* buttons */}
-          <div className='flex' >
+          <div className='flex mt-7 gap-3 flex-row-reverse ' >
             {/* next button */}
             <IconBtn
               type={"button"}
@@ -187,6 +188,7 @@ const CourseBuilder = () => {
             <button 
               type='button'
               onClick={goToBack}
+              className='flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900'
             >
               Back
             </button>

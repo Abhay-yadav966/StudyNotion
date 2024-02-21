@@ -44,7 +44,7 @@ const RenderSteps = () => {
               {/* dashed line */}
               {
                 element.id !== 3 && (
-                  <div className='border-t-2 border-dashed border-richblack-600 w-[200px] ' ></div>
+                  <div className={` ${ step > element.id ? "border-yellow-50" : "border-richblack-600" } border-t-2 border-dashed border-richblack-600 w-[200px] `} ></div>
                 )
               }
             </div>

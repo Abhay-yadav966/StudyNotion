@@ -1,5 +1,6 @@
 const Section = require("../models/Section");
 const Course = require("../models/Course");
+const { RiCarWashingLine } = require("react-icons/ri");
 
 
 // create section
@@ -49,10 +50,10 @@ exports.createSection = async (req, res) => {
 }
 
 // update section
-exports.updateSection = async (req, res) => {
+exports.updateSection = async (req, res) => { 
     try{
         // fetch data from req.
-        const {sectionName, sectionId} = req.body;
+        const {sectionName, sectionId, courseId} = req.body;
 
         // validation
         if(!sectionName || !sectionId){
@@ -71,10 +72,14 @@ exports.updateSection = async (req, res) => {
                                             {new:true},
         );
 
+        // now fetching course details for response
+        const courseDetails = await Course.findById({_id:courseId}).populate("courseContent");
+
         // return res
         return res.status(200).json({
             success:true,
             message:"Section Updated Successfully",
+            courseDetails,
         });
     }
     catch(err){
@@ -92,16 +97,16 @@ exports.deleteSection = async (req, res) => {
     try{
     
         // fetch data from params
-        const {sectionId, courseId} = req.query; 
+        const {sectionId, courseId} = req.body; 
 
         console.log("section id ->",sectionId);
         console.log("course id -> ",courseId);
 
         // delete section
-        await Section.findByIdAndDelete({_id:sectionId});
+        const SectionDetails = await Section.findByIdAndDelete({_id:sectionId});
 
         // update course with sectionid
-        await Course.findByIdAndUpdate(
+        const courseDetails = await Course.findByIdAndUpdate(
             {_id:courseId},
             {
                 $pull:{
@@ -109,12 +114,13 @@ exports.deleteSection = async (req, res) => {
                 }
             },
             {new:true}, 
-        );
+        ).populate("courseContent");;
 
         // return res
         return res.status(200).json({
             success:true,
             message:"Section Deleted Successfully",
+            courseDetails,
         });
     }
     catch(err){

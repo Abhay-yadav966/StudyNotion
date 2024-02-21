@@ -53,7 +53,7 @@ const ChipInput = ({label, name, placeholder, register, errors, setValue, getVal
   return (
     <div>
 
-        <lable className='flex flex-col gap-1' >
+        <label className='flex flex-col gap-1' >
             {/* lable */}
             <p className='text-base text-richblack-5' >{label}<sup className='text-pink-400' > *</sup></p>
 
@@ -93,7 +93,7 @@ const ChipInput = ({label, name, placeholder, register, errors, setValue, getVal
                 </div>
                 )
             }
-        </lable>
+        </label>
     </div>
   )
 }

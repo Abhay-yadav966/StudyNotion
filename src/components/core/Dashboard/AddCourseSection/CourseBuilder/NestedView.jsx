@@ -9,11 +9,12 @@ import { MdAdd } from "react-icons/md";
 import {deleteSection, deleteSubSection} from '../../../../../services/operations/courseDetailsAPI'
 import {setCourse} from '../../../../../slices/courseSlice'
 import ConfirmationModal from '../../../../common/ConfirmationModal'
+import SubSectionModal from './SubSectionModal';
 
 const NestedView = ({handleChangeEditSSectionName}) => {
 
     const {token} = useSelector( (state) => state.auth );
-    const {course} = useSelector( (state) => state.course );
+    const {course} = useSelector( (state) => state.course ); 
     const dispatch = useDispatch();
 
 
@@ -21,9 +22,10 @@ const NestedView = ({handleChangeEditSSectionName}) => {
     const [addSubsection, setAddSubSection] = useState(null);
     const [ viewSubSection, setViewSubSection ] = useState(null);
     const [editSubSection, setEditSubSection] = useState(null);
+    console.log("add subsection", addSubsection);
 
     // confirmation modal
-    const [confirmationModal, setConfirmationModal] = useState({});  
+    const [confirmationModal, setConfirmationModal] = useState(null);  
 
     // delete section
     const handleDeleteSection = async (sectionId) => {
@@ -41,7 +43,8 @@ const NestedView = ({handleChangeEditSSectionName}) => {
 
     // delete sub Section
     const handleDeleteSubSection = async (sectionId, subSectionId) => {
-        const result = await deleteSubSection({sectionId, subSectionId}, token);
+        const courseId = course._id;
+        const result = await deleteSubSection({sectionId, subSectionId, courseId}, token);
 
         // ....
         if( result ){
@@ -53,28 +56,29 @@ const NestedView = ({handleChangeEditSSectionName}) => {
     }
 
   return (
-    <div>
-         <div>
+    <div className='  mt-5 border border-richblack-600 rounded-lg p-8 bg-richblack-700 ' >
+         <div className='flex flex-col gap-5' >
             {
                 course?.courseContent?.map((section) => (
-                    <details key={section._id}  open>
-                        <summary>
+                    <details key={section?._id}  open>
+                        <summary className='list-none pb-1 cursor-pointer flex justify-between items-center border-b-2 border-richblack-600' >
                             {/* left part */}
-                            <div className='flex' >
+                            <div className='flex items-center gap-3 ' >
                                 {/* icon and name */}
-                                <RxDropdownMenu />
-                                <p>{section.sectionName}</p>
+                                <RxDropdownMenu size={"30px"} />
+                                <p className='font-semibold text-base text-richblack-50' >{section?.sectionName}</p>
                             </div>
 
                             {/* right part */}
-                            <div className='flex' >
+                            <div className='flex gap-3 items-center' >
 
                                 {/* edit button */}
                                 <button
                                     type='button'
-                                    onClick={() => handleChangeEditSSectionName(section.sectionName, section._id)}
+                                    onClick={() => handleChangeEditSSectionName(section?.sectionName, section?._id)}
+                                    className='text-richblack-400'
                                 >
-                                    <MdEdit />
+                                    <MdEdit size={"20px"}/>
                                 </button>
 
                                 {/* delete button */}
@@ -86,45 +90,47 @@ const NestedView = ({handleChangeEditSSectionName}) => {
                                             subHeading:"All the lecture in this section will be deleted",
                                             btn1Text:"Delete",
                                             btn2Text:"Cancel",
-                                            btn1Handler: () => handleDeleteSection(section._id),
+                                            btn1Handler: () => handleDeleteSection(section?._id),
                                             btn2Handler: () => setConfirmationModal(null),
                                         }
                                     )}
+                                    className='text-richblack-400'
                                 >
-                                    <RiDeleteBin6Line />
+                                    <RiDeleteBin6Line size={"20px"} />
                                 </button>
 
                                 
                                 {/* border */}
-                                <span>|</span>
+                                <span className='text-richblack-400 text-2xl' >|</span>
 
                                 {/* down arrow */}
-                                <BiSolidDownArrow />
+                                <BiSolidDownArrow size={"15px"} className='text-richblack-400' />
                                 
                             </div>
                         </summary>
 
                         {/* subsection */}
-                        <div>
+                        <div className='py-3 px-6 flex flex-col gap-3 ' >
                             {
-                                section?.subSection.map( (subSection) => (
-                                    <div key={subSection._id} onClick={() => setViewSubSection(subSection)}  >
+                                section?.subSection?.map( (subSection) => (
+                                    <div className='border-b-2 border-richblack-600 flex items-center justify-between cursor-pointer ' key={subSection?._id} onClick={() => setViewSubSection(subSection)}  >
 
                                         {/* left */}
-                                        <div>
+                                        <div className='flex gap-2 items-center ' >
                                             {/* name and icon */}
-                                            <RxDropdownMenu />
-                                            <p>{subSection?.title}</p>
+                                            <RxDropdownMenu size={"30px"} />
+                                            <p className='font-semibold text-base text-richblack-50 ' >{subSection?.title}</p>
                                         </div>
 
                                         {/* right */}
-                                        <div>
+                                        <div onClick={(e) => e.stopPropagation()} className=' flex gap-2 items-center ' >
                                             {/* edit button */}
                                             <button
                                                 type='button'
                                                 onClick={() => setEditSubSection(subSection)}
+                                                className='text-richblack-400'
                                             >
-                                                <MdEdit />
+                                                <MdEdit size={"20px"} />
                                             </button>
 
                                             {/* delete button */}
@@ -138,8 +144,9 @@ const NestedView = ({handleChangeEditSSectionName}) => {
                                                     btn1Handler : () => handleDeleteSubSection(section._id, subSection._id),
                                                     btn2Handler: () => setConfirmationModal(null),
                                                 })}
+                                                className='text-richblack-400'
                                             >
-                                                <RiDeleteBin6Line />
+                                                <RiDeleteBin6Line size={"20px"} />
                                             </button>
                                         </div>
                                     </div>
@@ -150,9 +157,10 @@ const NestedView = ({handleChangeEditSSectionName}) => {
                         <button
                             type='button'
                             onClick={() => setAddSubSection(section._id)}
+                            className='flex items-center gap-1 mt-3 ml-5 '
                         >
-                            <MdAdd />
-                            <p>Add Lecture</p>
+                            <MdAdd size={"24px"} className='text-yellow-50 font-bold ' />
+                            <p className='font-semibold text-base text-yellow-50' >Add Lecture</p>
                         </button>
                     </details>
                 ))
@@ -161,11 +169,10 @@ const NestedView = ({handleChangeEditSSectionName}) => {
 
          {/* sub section modal for add edit and delete */}
          {
-            addSubsection ? (<subSectionModal modalData = {addSubsection} add={true} setModalData = {setAddSubSection} />) 
+            addSubsection ? (<SubSectionModal modalData = {addSubsection} add={true} setModalData = {setAddSubSection} />) 
+            : ( viewSubSection ? (<SubSectionModal modalData={viewSubSection} setModalData = {setViewSubSection} view = {true} />) 
 
-            : ( viewSubSection ? (<subSectionModal modalData={viewSubSection} setModalData = {setViewSubSection} view = {true} />) 
-
-            : ( editSubSection ? (<subSectionModal modalData = {editSubSection} setModalData = {setEditSubSection} edit = {true} />) 
+            : ( editSubSection ? (<SubSectionModal modalData = {editSubSection} setModalData = {setEditSubSection} edit = {true} />) 
             
             : (<div></div>) ) )
          }

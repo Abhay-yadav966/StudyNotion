@@ -18,8 +18,10 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
     useEffect( () => {
         register(name, {required:true});
 
-        if( editCourse ){
+        if(editCourse){
+            console.log("course edit ka andar");
             setValue(name, course?.instructions);
+            setRequirementList(course?.instructions);
         }
 
     }, [] );

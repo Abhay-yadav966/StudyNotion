@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // impoting controllers
-const {createCourse, updateCourse,getAllCourses, getCourseDetails} = require("../controllers/Course");
+const {createCourse, updateCourse,getAllCourses, getCourseDetails, getInstructorCourses, deleteCourse} = require("../controllers/Course");
 
 // importing category controller
 const {createCategory, getAllCategories, categoryPageDetails} = require("../controllers/Category");
@@ -27,14 +27,20 @@ const {auth, isStudent, isInstructor, isAdmin} = require("../middlewares/auth");
 // create course - course can only be created by instructor
 router.post("/createCourse", auth, isInstructor, createCourse);
 
+// delete course - it can be only done by instructor
+router.delete("/deleteCourse", auth, isInstructor, deleteCourse);
+
 // update course - can done by only instructor
-router.put("/editCourse", auth, isInstructor, updateCourse);
+router.post("/editCourse", auth, isInstructor, updateCourse);
 
 // getAllCourses
 router.get("/getAllCourses", getAllCourses);
 
 // getCourseDetails
 router.post("/getCourseDetails", getCourseDetails);
+
+// get Instructor courses
+router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
 
 // section routes
 // createSection 

@@ -3,7 +3,7 @@ import RenderSteps from './RenderSteps'
 
 const AddCourse = () => {
   return (
-    <div className='flex justify-between text-richblack-5 w-full items-start gap-x-6 mt-10 ' >
+    <div className='flex text-richblack-5 w-full items-start gap-6 mt-10 ' >
         <div className='w-[58%] flex flex-col gap-14 '>
             <h1 className='text-3xl font-medium' >Add Course</h1>
             <div>
@@ -12,7 +12,7 @@ const AddCourse = () => {
         </div>
 
         {/* tips */}
-        <div className='flex flex-col gap-8 border border-richblack-700 bg-richblack-800 rounded-lg p-6  w-[29%] fixed right-16 ' >
+        <div className='flex flex-col gap-8 border border-richblack-700 bg-richblack-800 rounded-lg p-6  max-w-[400px] sticky top-10 ' >
             <h1 className='font-semibold text-lg  ' >⚡Course Upload Tips</h1>
             <ul className='flex flex-col gap-4 font-medium text-xs list-disc pl-6' >
                 <li>Set the Course Price option or make it free.</li>
