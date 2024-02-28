@@ -29,7 +29,7 @@ exports.createCourse = async (req, res) => {
 
         // checking status
         if( !status || status === undefined ){
-            status = "Draft"
+            status = "Drafted"
         }
 
         // check for instructor
@@ -181,7 +181,7 @@ exports.updateCourse = async (req, res) => {
                                 path:"subSection",
                             },
         })
-        .populate("category")
+        .populate("category") 
         .populate("ratingAndReviews")
         .populate({
             path:"instructor",

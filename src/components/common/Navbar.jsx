@@ -21,7 +21,7 @@ import { IoIosArrowDown } from "react-icons/io";
 //     }
 // ]
 
-const Navbar = () => {
+const Navbar = () => { 
 
     // import data from redux
     const {token} = useSelector( (state) => state.auth );
@@ -29,7 +29,7 @@ const Navbar = () => {
     const {totalItems} = useSelector((state) => state.cart);
 
     // state variable for changing tab
-    const [ tab, setTab ] = useState(NavbarLinks[0].title)
+    const [ tab, setTab ] = useState(NavbarLinks[0].title) 
 
     // state variable for storing categories data
     const [ subLinks, setSubLinks ] = useState([]);
@@ -95,9 +95,11 @@ const Navbar = () => {
                                                             subLinks.length ? (
                                                                 subLinks.map( (element, index) => {
                                                                     return(
-                                                                        <p key={index} className='py-2 hover:bg-richblack-50 rounded-lg pl-4 py-4 font-medium ' >
-                                                                            {element.name}
-                                                                        </p>
+                                                                        <Link key={index} to={`/catalog/${element.name.split(" ").join("-").toLowerCase()}`} >
+                                                                            <p className=' hover:bg-richblack-50 rounded-lg pl-4 py-4 font-medium ' >
+                                                                                {element.name}
+                                                                            </p>
+                                                                        </Link>
                                                                     )
                                                                 } )
                                                             ):

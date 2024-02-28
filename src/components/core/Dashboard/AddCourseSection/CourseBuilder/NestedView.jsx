@@ -65,7 +65,7 @@ const NestedView = ({handleChangeEditSSectionName}) => {
                             {/* left part */}
                             <div className='flex items-center gap-3 ' >
                                 {/* icon and name */}
-                                <RxDropdownMenu size={"30px"} />
+                                <RxDropdownMenu size={"30px"} className='text-richblack-50' />
                                 <p className='font-semibold text-base text-richblack-50' >{section?.sectionName}</p>
                             </div>
 
@@ -118,7 +118,7 @@ const NestedView = ({handleChangeEditSSectionName}) => {
                                         {/* left */}
                                         <div className='flex gap-2 items-center ' >
                                             {/* name and icon */}
-                                            <RxDropdownMenu size={"30px"} />
+                                            <RxDropdownMenu size={"30px"} className='text-richblack-50' />
                                             <p className='font-semibold text-base text-richblack-50 ' >{subSection?.title}</p>
                                         </div>
 

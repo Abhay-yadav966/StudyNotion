@@ -22,6 +22,8 @@ import {ACCOUNT_TYPE} from './utils/constants'
 import AddCourse from "./components/core/Dashboard/AddCourseSection/AddCourse";
 import MyCourses from "./components/core/Dashboard/MyCourses";
 import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse";
+import Catalog from "./Pages/Catalog";
+import CourseDetails from "./Pages/CourseDetails";
 
 function App() {
 
@@ -35,6 +37,34 @@ function App() {
       <Routes>
         {/* home page */}
         <Route path="/" element={<Home/>} />
+
+        {/* about us page */}
+        <Route
+          path="/about"
+          element={
+              <About/> 
+          }
+        />
+
+        {/* contact us page */}
+        <Route
+          path="/contact"
+          element={            
+            <ContactUs/>            
+          }
+        />
+
+        {/* Catalog page */}
+        <Route
+          path="/catalog/:catalogName"
+          element={<Catalog/>}
+        />
+
+        {/* course Page */}
+        <Route
+          path="/courses/:courseId"
+          element={<CourseDetails/>}
+        />
 
         {/* login page */}
         <Route path="/login" 
@@ -85,21 +115,6 @@ function App() {
           }
         />
 
-        {/* about us page */}
-        <Route
-          path="/about"
-          element={
-              <About/> 
-          }
-        />
-
-        {/* contact us page */}
-        <Route
-          path="/contact"
-          element={            
-            <ContactUs/>            
-          }
-        />
 
         {/* Dashboard -> nested routing */} 
         <Route

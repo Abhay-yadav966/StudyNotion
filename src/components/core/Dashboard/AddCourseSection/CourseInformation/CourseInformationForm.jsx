@@ -25,9 +25,7 @@ const CourseInformationForm = () => {
 
   // categories
   const [ courseCategories, setCourseCategories ] = useState([]);
-  // const {courseCategories} = useSelector((state) => state.course );
-  // console.log("categories slice", courseCategories);
-
+  
   // using useForm
   const{
     register,
@@ -140,7 +138,7 @@ const CourseInformationForm = () => {
   
         setLoading(true);
         const result = await editCourseDetails(formData, token);
-        console.log("value of result ->" ,result);
+        
         if(result){
           dispatch(setStep(2));
           dispatch(setCourse(result));

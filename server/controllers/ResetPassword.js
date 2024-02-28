@@ -33,6 +33,7 @@ exports.resetPasswordToken = async (req, res) => {
 
         // generate token
         const token = crypto.randomUUID();
+        console.log("checking usage of crypto ->", token);
 
         // update user by adding token and expiration time
         const updateDetails = await User.findOneAndUpdate( {email:email }, 

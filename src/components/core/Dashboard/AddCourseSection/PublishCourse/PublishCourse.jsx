@@ -3,9 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import IconBtn from '../../../../common/IconBtn'
-import { resetCourseState } from '../../../../../slices/courseSlice';
+import { resetCourseState , setStep} from '../../../../../slices/courseSlice';
 import { COURSE_STATUS } from '../../../../../utils/constants'
 import { editCourseDetails } from '../../../../../services/operations/courseDetailsAPI';
+import { useNavigate } from 'react-router-dom';
 
 
 const PublishCourse = () => {
@@ -28,16 +29,17 @@ const PublishCourse = () => {
 
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // fetching data from slices
   const { token} = useSelector( (state) => state.auth );
-  const { course, setStep} = useSelector( ( state) => state.course );
+  const { course} = useSelector( ( state) => state.course );
   const [ loading, setLoading] = useState(false);
 
   // goToCourse fn
   const goToCourses = () => {
     dispatch( resetCourseState() );
-    //  todo navigate to the course show
+    navigate("/dashboard/my-courses");
   }
   
   // submit fn.

@@ -14,11 +14,13 @@ const ChipInput = ({label, name, placeholder, register, errors, setValue, getVal
 
     // storing variable in array
     const [ tagList, setTagList ] = useState([]);
+    console.log("data outside ->", tagList);
 
     // on first render
     useEffect(() => {
         if( editCourse ){
             setValue(name, course?.tag);
+            setTagList(JSON.parse(course?.tag));
         }
 
         register(name, {required:true, validate: (value) => value.length > 0})

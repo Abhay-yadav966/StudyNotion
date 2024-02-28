@@ -48,7 +48,7 @@ const courseSchema = new mongoose.Schema({
     },
 
     tag: {
-		type: [String],
+		type: String,
 		required: true,
 	},
     
@@ -66,11 +66,11 @@ const courseSchema = new mongoose.Schema({
     ],
 
     instructions: {
-		type: [String],
+		type: String,
 	},
 	status: {
 		type: String,
-		enum: ["Draft", "Published"],
+		enum: ["Drafted", "Published"],
 	},
     
 });

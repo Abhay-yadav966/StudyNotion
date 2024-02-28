@@ -13,17 +13,15 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
     // state variable for storing requirement list
     const [requirementList, setRequirementList] = useState([]);
 
-
     // register for first input
     useEffect( () => {
         register(name, {required:true});
 
         if(editCourse){
-            console.log("course edit ka andar");
             setValue(name, course?.instructions);
-            setRequirementList(course?.instructions);
+            setRequirementList(JSON.parse(course?.instructions));
         }
-
+ 
     }, [] );
 
     // updating on the change of requirement list
@@ -46,7 +44,6 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
 
     // fn for remove requirement
     const handleRemoveRequirement = (index) => {
-        console.log("clicked");
         // copying the requirement list
         const dummyRequirementList = [...requirementList];
         dummyRequirementList.splice(index, 1);
@@ -78,7 +75,7 @@ const RequirementField = ({label, register, errors, name, setValue, getValues}) 
                 {
                     requirementList.length > 0 && (requirementList.map( (element, index) => (
                         <li key={index} className='flex gap-2 items-center ' >
-                            <p>{element}</p>
+                            <p className='text-richblack-5' >{element}</p>
                             <button
                                 type='button'
                                 onClick={ () => handleRemoveRequirement(index)}
