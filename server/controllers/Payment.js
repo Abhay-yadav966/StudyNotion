@@ -5,6 +5,7 @@ const Course = require("../models/Course");
 const {mailSender} = require("../utils/MailSender");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const mongoose = require("mongoose");
+const {paymentSuccessEmail} = require("../mail/templates/paymentSuccessEmail");
 
 // for buying multiple course
 // create order
@@ -105,7 +106,7 @@ exports.verifyPayment = async (req, res) => {
             })
         }
 
-        return res.status(200).json({
+        return res.status(500).json({
             success:false,
             message:"Payment Failed",
         })
@@ -173,7 +174,36 @@ const enrollStudents = async (courses, userId, res) => {
 }
 
 
+// payment successfull emails
+exports.sendPaymentSuccessEmail = async (req, res) => {
+    try{
+        const {orderId, paymentId, amount} = req.body;
 
+        const userId = req.user.id;
+
+        // validations
+        if( !orderId || !paymentId || !amount || !userId){
+            return res.status(400).json({
+                success:false,
+                message:"Please provide all the fields"
+            })
+        }
+
+        // find student
+        const enrolledStudent = await User.findById({_id:userId});
+
+        await mailSender( enrolledStudent.email, "Payment Recieved", paymentSuccessEmail(`${enrolledStudent.firstName} ${enrolledStudent.lastName}`, 
+                                                                                               amount/100,
+                                                                                               orderId,
+                                                                                               paymentId) );
+    }
+    catch(error){
+        return res.status(500).json({
+            success:false,
+            message:error.message,
+        });
+    }
+}
 
 
 

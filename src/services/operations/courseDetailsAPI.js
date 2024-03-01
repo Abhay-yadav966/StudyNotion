@@ -46,6 +46,7 @@ export const fetchCourseDetails = async (courseId) => {
   //   dispatch(setLoading(true));
   let result = null;
   try {
+    console.log("glich");
     const response = await apiConnector("POST", COURSE_DETAILS_API, {
       courseId,
     })

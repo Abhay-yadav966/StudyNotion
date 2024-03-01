@@ -19,7 +19,7 @@ const Catalog = () => {
   const [catalogPageData, setCatalogPageData] = useState(null);
   console.log("The outside catalog page data", catalogPageData);
   // catagory id
-  const [categoryId, setCategoryId] = useState("");
+  const [categoryId, setCategoryId] = useState(null);
 
   // array for new popular trending data
   const selectedHeading = [
@@ -31,14 +31,13 @@ const Catalog = () => {
       id:2,
       name:"New",
     }
-  ]
+  ] 
 
   // state variable for selected heading
   const [ selected, setSelected ] = useState( selectedHeading[0].name );
 
   // this fn. will give category id on clicking category 
   const getCatalogId = async () => {
-    const toastId = toast.loading("Loading...");
     try{
       const result = await apiConnector("GET", categories.CATEGORIES_API);
 
@@ -53,7 +52,6 @@ const Catalog = () => {
     catch(error){
       console.log("Unable to fetch category id", error);
     }
-    toast.dismiss(toastId);
   }
 
   // it will run when we will click on category
@@ -64,23 +62,23 @@ const Catalog = () => {
 
   // this fn will fetching catalog page details
   const getCatalogDetails = async (categoryId) => {
-    const toastId = toast.loading("Loading...");
     try{
       const catalogPageDetails = await getCatalogPageData({categoryId});
 
       if( catalogPageDetails ){
         setCatalogPageData(catalogPageDetails);
-      }
+      } 
     }
     catch(error){
       console.log("Unable to fetch Catalog page details", error);
     }
-    toast.dismiss(toastId);
   }
 
   // it will run to get category page detail
   useEffect(() => {
-    getCatalogDetails(categoryId);
+    if(categoryId){
+      getCatalogDetails(categoryId);
+    }
   }, [categoryId]);
 
   return (

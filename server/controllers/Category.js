@@ -71,6 +71,8 @@ exports.categoryPageDetails = async (req, res) => {
         // fetch data
         const {categoryId} = req.body;
 
+        console.log("type of category id", typeof(categoryId));
+
         // fetch courses related to category
         const selectedCategory = await  Category.findById({_id:categoryId})
                                         .populate({
@@ -153,7 +155,7 @@ exports.categoryPageDetails = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
+        console.log(" Error -> ", err);
         return res.status(500).json({
             success:false,
             error:err.message,
