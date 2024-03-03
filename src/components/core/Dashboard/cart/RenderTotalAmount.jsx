@@ -13,15 +13,17 @@ const RenderTotalAmount = () => {
     }
 
   return (
-    <div>
-        <p>Total:</p>
-        <p>Rs {total}</p>
-
-        <IconBtn 
-            text="Buy Now"
-            onclick={handleBuyCourse}
-            customClasses={"w-full justify-center"}
-        />
+    <div className='rounded-lg border border-[#2C333F] p-6 bg-[#161D29] flex flex-col gap-1 min-w-[282px] ' >
+        <p className='font-semibold text-sm text-[#999DAA]' >Total:</p>
+        <p className='font-semibold text-2xl text-[#FFD60A]' >₹ {total}</p>
+        <div className='mt-5' >
+          <button 
+              onClick={handleBuyCourse}
+              className=' text-[16px] px-5 py-2 rounded-lg font-semibold text-black bg-yellow-50 w-full  '
+          >
+            Buy Now
+          </button>
+        </div>
     </div>
   )
 }

@@ -138,14 +138,16 @@ const Navbar = () => {
                 {
                     user !== null && user?.accountType !== "Instructor" && (
                         <Link to={"/dashboard/cart"} className='relative'>
-                            <AiOutlineShoppingCart  className='text-richblack-200 h-6 w-6' />
-                            {
-                                totalItems > 0 && (
-                                    <span>
-                                        {totalItems}
-                                    </span>
-                                )
-                            }
+                            <div className='relative' >
+                                <AiOutlineShoppingCart  className='text-richblack-200 h-6 w-6' />
+                                {
+                                    totalItems > 0 && (
+                                        <span className=' absolute -right-3 top-2 bg-[#2C333F] rounded-full flex items-center justify-center px-2 py-1 text-xs font-semibold text-yellow-200' >
+                                            {totalItems}
+                                        </span>
+                                    )
+                                }
+                            </div>
                         </Link>
                     )
                 }  

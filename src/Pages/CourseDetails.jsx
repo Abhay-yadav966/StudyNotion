@@ -12,8 +12,9 @@ import { CiGlobe } from "react-icons/ci";
 import { GoDotFill } from "react-icons/go";
 import CourseDetailsCart from '../components/core/Course/CourseDetailsCart'
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { MdKeyboardArrowUp } from "react-icons/md";
-
+import ConfirmationModal from '../components/common/ConfirmationModal';
+import NestedSubSectionView from '../components/core/Course/NestedSubSectionView';
+import Footer from '../components/common/Footer'
 
 
 const CourseDetails = () => {
@@ -27,6 +28,12 @@ const CourseDetails = () => {
   // fetching data from url
   const {courseId} = useParams();
 
+  // state variale for keeping track of which detail tag is open
+  const[isActive, setIsActive] = useState([]);
+
+  // state variable for confirmation model
+  const [ confirmationModal, setConfirmationModal ] = useState(null);
+
   // state variable for course details
   const [ courseData, setCourseData ] = useState(null);
 
@@ -38,8 +45,6 @@ const CourseDetails = () => {
 
   // state variable for length of subsection
   const [ subSectionLength, setSubSectionLength ] = useState(0);
-
-  // state variable for 
 
   // function for calculating the length of the subsection
   const findSubSectionLength = () => {
@@ -116,7 +121,7 @@ const CourseDetails = () => {
   return (
     <div>
         <div className='bg-richblack-800' >
-          <div className='w-11/12 max-w-maxContent mx-auto ' >
+          <div className='w-11/12 max-w-maxContent mx-auto relative ' >
             {/* left */}
             <div className='flex flex-col gap-3 py-28 max-w-[770px] ' >
               {/* course name */}
@@ -148,7 +153,7 @@ const CourseDetails = () => {
 
             {/* right */}
             <div>
-              <CourseDetailsCart course={courseData} paymentHandler = {handleBuyCourse} />
+              <CourseDetailsCart course={courseData} paymentHandler = {handleBuyCourse} setConfirmationModal={setConfirmationModal} />
             </div>
           </div>
         </div>
@@ -160,7 +165,7 @@ const CourseDetails = () => {
               <p className='font-medium text-base text-[#C5C7D4] ' >{courseData?.whatYouWillLearn}</p>
             </div>
 
-            <div className='flex flex-col gap-2' >
+            <div className='flex flex-col gap-3' >
               <h2 className='font-semibold text-3xl text-richblack-5' >Course Content</h2>
               <div>
                 <div className='flex gap-2 items-center' >
@@ -170,32 +175,55 @@ const CourseDetails = () => {
                   <GoDotFill className='font-medium text-base text-richblack-25' />
                   <p className='font-medium text-base text-richblack-25' >{totalLength}s total length</p>
                 </div>
-
-                {/* all collapse button */}
-
               </div>
 
-              <div>
+              <div className='max-w-[770px] border border-[#424854] ' >
                 {
                   courseData?.courseContent?.map((section) => (
                     <details key={section._id} open={false} >
-                      <summary>
+                      <summary className='list-none flex items-center justify-between border-b border-[#424854] bg-[#2C333F] py-6 px-8 cursor-pointer ' >
                         {/* left */}
-                        <div>
-                         
+                        <div className='flex items-center gap-2 ' >
+                          <MdKeyboardArrowDown size={"25px"} className='text-[#F1F2FF]' />
+                          <p className='font-medium text-base text-[#F1F2FF]' >{section?.sectionName}</p>
                         </div>
 
                         {/* right */}
                         <div>
-
+                          <p className='font-normal text-base text-[#FFD60A]' >{section?.subSection?.length} lectures</p>
                         </div>
                       </summary>
+
+                      <div>
+                        {
+                          section?.subSection?.map((subSection) => (
+                            <NestedSubSectionView key={subSection._id} data={subSection}/>
+                          ))
+                        }
+                      </div>
                     </details>
                   ))
                 } 
               </div>
             </div>
+
+            <div className='flex flex-col gap-5' >
+              <h3 className='font-semibold text-3xl text-[#F1F2FF]' >Author</h3>
+              <div className='flex items-center gap-3' >
+                <img src={courseData?.instructor?.image} alt="Instructor Image" height={"52px"} width={"52px"} className='rounded-full'/>
+                <p className='font-medium text-lg text-[#F1F2FF]' >{courseData?.instructor?.firstName} {courseData?.instructor?.lastName}</p>
+              </div>
+            </div>
+
         </div>
+
+        {/* footer */}
+        <Footer/>
+
+
+        {
+          confirmationModal && <ConfirmationModal modalData={confirmationModal} />
+        }
     </div>
   )
 }

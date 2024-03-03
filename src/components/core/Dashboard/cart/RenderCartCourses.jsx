@@ -12,18 +12,18 @@ const RenderCartCourses = () => {
     const dispatch = useDispatch();
 
   return (
-    <div>
+    <div className='w-full'>
         {
             cart.map( (course, index) => (
-                <div>
+                <div key={index} className='flex justify-between ' >
                     {/* left */}
-                    <div>
-                        <img src={course?.thumbnail} alt={course?.courseName} />
-                        <div>
-                            <p>{course?.courseName}</p>
-                            <p>{course?.category?.name}</p>
-                            <div>
-                                <span>4.8</span>
+                    <div className='flex gap-4' >
+                        <img src={course?.thumbnail} alt={course?.courseName} width={"225px"} className='rounded-lg object-cover object-center ' />
+                        <div className='flex flex-col gap-2' >
+                            <p className='font-medium text-lg text-[#F1F2FF] ' >{course?.courseName}</p>
+                            <p className='font-normal text-base text-[#838894]' >{course?.category?.name}</p>
+                            <div className='flex items-center gap-2' >
+                                <span className='font-semibold text-base text-[#E7C009]' >4.8</span>
                                 <ReactStars
                                     count={5}
                                     size={20}
@@ -32,16 +32,17 @@ const RenderCartCourses = () => {
                                     emptyIcon={<FaRegStar />}
                                     filledIcon={<FaRegStar />}
                                 />
-                                <span>{course?.ratingAndReviews?.length} Ratings</span>
+                                <span className='font-normal text-base text-[#6E727F]' >{course?.ratingAndReviews?.length} Ratings</span>
                             </div>
                         </div> 
                     </div>
 
-                    <div>
-                        <button onClick={ () => dispatch(removeFromCart(course._id))} >
-                            <FiTrash2/>
-                            <span>Remove</span>
+                    <div className='flex flex-col gap-2 items-end ' >
+                        <button onClick={ () => dispatch(removeFromCart(course._id))} className='flex items-center p-3 gap-2 rounded-lg border border-[#2C333F] bg-[#161D29] ' >
+                            <FiTrash2 size={"18px"} className='text-[#EF476F]' />
+                            <span className='font-medium text-base text-[#EF476F]' >Remove</span>
                         </button>
+                        <p className='font-semibold text-2xl text-[#FFD60A]' >₹ {course?.price}</p>
                     </div>
                 </div>
             ) )
