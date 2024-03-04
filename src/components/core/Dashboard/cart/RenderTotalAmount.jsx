@@ -13,7 +13,7 @@ const RenderTotalAmount = () => {
     }
 
   return (
-    <div className='rounded-lg border border-[#2C333F] p-6 bg-[#161D29] flex flex-col gap-1 min-w-[282px] ' >
+    <div className='rounded-lg border border-[#2C333F] p-6 bg-[#161D29] flex flex-col gap-1 min-w-[282px] mt-10 h-fit ' >
         <p className='font-semibold text-sm text-[#999DAA]' >Total:</p>
         <p className='font-semibold text-2xl text-[#FFD60A]' >₹ {total}</p>
         <div className='mt-5' >

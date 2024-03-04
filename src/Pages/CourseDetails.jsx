@@ -28,9 +28,6 @@ const CourseDetails = () => {
   // fetching data from url
   const {courseId} = useParams();
 
-  // state variale for keeping track of which detail tag is open
-  const[isActive, setIsActive] = useState([]);
-
   // state variable for confirmation model
   const [ confirmationModal, setConfirmationModal ] = useState(null);
 

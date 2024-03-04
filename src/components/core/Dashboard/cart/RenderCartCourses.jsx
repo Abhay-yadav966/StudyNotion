@@ -15,10 +15,10 @@ const RenderCartCourses = () => {
     <div className='w-full'>
         {
             cart.map( (course, index) => (
-                <div key={index} className='flex justify-between ' >
+                <div key={index} className='flex justify-between border-b border-[#6E727F] py-10' >
                     {/* left */}
                     <div className='flex gap-4' >
-                        <img src={course?.thumbnail} alt={course?.courseName} width={"225px"} className='rounded-lg object-cover object-center ' />
+                        <img src={course?.thumbnail} alt={course?.courseName} width={"225px"} height={"150px"} className='rounded-lg object-cover object-center ' />
                         <div className='flex flex-col gap-2' >
                             <p className='font-medium text-lg text-[#F1F2FF] ' >{course?.courseName}</p>
                             <p className='font-normal text-base text-[#838894]' >{course?.category?.name}</p>

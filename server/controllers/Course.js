@@ -6,6 +6,7 @@ const SubSection = require("../models/SubSection");
 const Section = require("../models/Section");
 const {uploadImageToCloudinary} = require("../utils/imageUploader");
 const { FaChampagneGlasses } = require("react-icons/fa6");
+const CourseProgress = require("CourseProgress");
 require("dotenv").config();
 
 // create course
@@ -382,5 +383,47 @@ exports.getInstructorCourses = async (req, res) => {
             error:error.message,
             message:"Something went wronge in get Instructor courses",
         });
+    }
+}
+
+// getFullCourseDetail
+exports.getFullCourseDetails = async (req, res) => {
+    try{
+        // fetching data from request
+        const {courseId} = req.body;
+        const userId = req.user.id;
+
+        // validation
+        if( !courseId || !userId ){
+            return res.status(400).json({
+                success:false,
+                message:"Course Id is absent"
+            })
+        }
+
+        // fetch course details
+        const courseDetails = await Course.findById({_id:courseId}).populate({
+                                                                                path:"instructor",
+                                                                                populate:{
+                                                                                    path:"additionalDetails",
+                                                                                }
+                                                                            })
+                                                                            .populate({
+                                                                                path:"courseContent",
+                                                                                populate:{
+                                                                                    path:"subSection",
+                                                                                }
+                                                                            })
+                                                                            .populate("category")
+                                                                            .populate("ratingAndReviews")
+                                                                            .exec();
+
+        // fetching course progress
+        const courseProgressCount = await CourseProgress.findOne({courseId : courseId}).populate("completedVideos").exec();
+
+        console.log(courseProgressCount);
+    }
+    catch(err){
+
     }
 }

@@ -6,6 +6,7 @@ const {mailSender} = require("../utils/MailSender");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const mongoose = require("mongoose");
 const {paymentSuccessEmail} = require("../mail/templates/paymentSuccessEmail");
+const crypto = require("crypto");
 
 // for buying multiple course
 // create order
@@ -28,9 +29,9 @@ exports.capturePayment = async (req, res) => {
                     })
                 }
     
-                const uid = mongoose.Types.ObjectId(userId);
+                const uid = new mongoose.Types.ObjectId(userId);
                 if( courseDetails.studentEnrolled.includes(uid) ){
-                    return resizeBy.status(200).json({
+                    return res.status(200).json({
                         success:false,
                         message:"User already enrolled course",
                     })
@@ -95,7 +96,7 @@ exports.verifyPayment = async (req, res) => {
                                         .digest("hex");
 
         if( expectedSignature === razorpay_signature ){
-            
+            console.log("arrived");
             // enroll student
             await enrollStudents(courses, userId, res);
 
@@ -112,9 +113,10 @@ exports.verifyPayment = async (req, res) => {
         })
     }
     catch(err){
+        console.log(err);
         return res.status(500).json({
             success:false,
-            message:"Payment Failed",
+            message:"Payment Failed3",
         })
     }
 }
@@ -122,7 +124,7 @@ exports.verifyPayment = async (req, res) => {
 // enroll students
 const enrollStudents = async (courses, userId, res) => {
     try{
-
+        console.log("backend triggered----->");
         if( !courses || !userId ){
             return res.status(400).json({
                 success:false,

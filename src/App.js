@@ -24,6 +24,7 @@ import MyCourses from "./components/core/Dashboard/MyCourses";
 import EditCourse from "./components/core/Dashboard/EditCourse/EditCourse";
 import Catalog from "./Pages/Catalog";
 import CourseDetails from "./Pages/CourseDetails";
+import ViewCourse from "./Pages/ViewCourse";
 
 function App() {
 
@@ -163,6 +164,30 @@ function App() {
         </Route>
 
 
+        {/* Nested Routing for View Course */}
+        <Route
+          element={
+            <PrivateRoute>
+              <ViewCourse/>
+            </PrivateRoute>
+          }
+        >
+
+          {/* checking for student */}
+          {
+            user?.accountType === ACCOUNT_TYPE.STUDENT && (
+              <>
+                <Route 
+                  path="/view-course/:courseId/section/:sectionId/sub-section/:subSectionId" 
+                  element={
+                    <VideoDetails/>
+                  }
+                />
+              </>
+            )
+          }
+
+        </Route>
 
 
         {/* if someone has entered wrong path that does not exist */}
