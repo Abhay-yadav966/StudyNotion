@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {getUserEnrolledCourses} from '../../../services/operations/profileAPI'
 import { useSelector } from 'react-redux';
 import ProgressBar from '@ramonak/react-progress-bar';
-import { json } from 'react-router-dom';
+import { Link, json } from 'react-router-dom';
 
 const EnrolledCourses = () => {
 
@@ -46,35 +46,36 @@ const EnrolledCourses = () => {
                         <div>
                             {
                                 enrolledCourses.map( (element, index) => (
-                                    
-                                        <div key={index} className='border-b border-[#2C333F] p-4 flex items-center'  >
-                                            {/* image in left */}
-                                            <div className='w-2/4 flex' >
-                                                <img src={element.thumbnail} alt={element?.courseName} height={"52px"} width={"52px"} className='rounded-lg object-cover' />
-                                                <div className='ml-5' >
-                                                    <p className='font-medium text-base text-[#F1F2FF]' >{element?.courseName}</p>
-                                                    <p className='font-normal text-base text-[#838894]' >{element?.courseDescription}</p>
+                                        <Link to={`/view-course/${element?._id}/section/${element?.courseContent[0]?._id}/sub-section/${element?.courseContent[0]?.subSection[0]?._id}`}>
+                                            <div key={index} className='border-b border-[#2C333F] p-4 flex items-center'  >
+                                                {/* image in left */}
+                                                <div className='w-2/4 flex' >
+                                                    <img src={element.thumbnail} alt={element?.courseName} height={"52px"} width={"52px"} className='rounded-lg object-cover' />
+                                                    <div className='ml-5' >
+                                                        <p className='font-medium text-base text-[#F1F2FF]' >{element?.courseName}</p>
+                                                        <p className='font-normal text-base text-[#838894]' >{element?.courseDescription}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className='w-1/3' > 
+                                                    <p className='font-medium text-base text-[#C5C7D4]' >
+                                                        {
+                                                            /* total duration */
+                                                            /* todo */
+                                                        }
+                                                    </p>
+                                                </div>
+
+                                                <div className='flex flex-col gap-1' >
+                                                    <p className='font-semibold text-sm text-[#C5C7D4]' >Progress : {element?.progressPercentage || 0}%</p>
+                                                    <ProgressBar
+                                                        completed={element?.progressPercentage || 0}
+                                                        height='8px'
+                                                        isLabelVisible={false}
+                                                    />
                                                 </div>
                                             </div>
-
-                                            <div className='w-1/3' > 
-                                                <p className='font-medium text-base text-[#C5C7D4]' >
-                                                    {
-                                                        /* total duration */
-                                                        /* todo */
-                                                    }
-                                                </p>
-                                            </div>
-
-                                            <div className='flex flex-col gap-1' >
-                                                <p className='font-semibold text-sm text-[#C5C7D4]' >Progress : {element?.progressPercentage || 0}%</p>
-                                                <ProgressBar
-                                                    completed={element?.progressPercentage || 0}
-                                                    height='8px'
-                                                    isLabelVisible={false}
-                                                />
-                                            </div>
-                                        </div>
+                                        </Link>
                                     
                                 ) )
                             }

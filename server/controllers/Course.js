@@ -6,7 +6,8 @@ const SubSection = require("../models/SubSection");
 const Section = require("../models/Section");
 const {uploadImageToCloudinary} = require("../utils/imageUploader");
 const { FaChampagneGlasses } = require("react-icons/fa6");
-const CourseProgress = require("CourseProgress");
+const CourseProgress = require("../models/CourseProgress");
+const {convertSecondsToDuration} = require("../utils/secToDuration");
 require("dotenv").config();
 
 // create course
@@ -389,6 +390,7 @@ exports.getInstructorCourses = async (req, res) => {
 // getFullCourseDetail
 exports.getFullCourseDetails = async (req, res) => {
     try{
+
         // fetching data from request
         const {courseId} = req.body;
         const userId = req.user.id;
@@ -405,7 +407,7 @@ exports.getFullCourseDetails = async (req, res) => {
         const courseDetails = await Course.findById({_id:courseId}).populate({
                                                                                 path:"instructor",
                                                                                 populate:{
-                                                                                    path:"additionalDetails",
+                                                                                    path:"additionDetails",
                                                                                 }
                                                                             })
                                                                             .populate({
@@ -418,12 +420,42 @@ exports.getFullCourseDetails = async (req, res) => {
                                                                             .populate("ratingAndReviews")
                                                                             .exec();
 
-        // fetching course progress
-        const courseProgressCount = await CourseProgress.findOne({courseId : courseId}).populate("completedVideos").exec();
+        if( !courseDetails ){
+            return res.status(400).josn({
+                success:false,
+                message:"Could not found the course with the courseId"
+            })
+        }
 
-        console.log(courseProgressCount);
+        // fetching course progress
+        let courseProgressCount = await CourseProgress.findOne({courseId : courseId}).populate("completedVideos").exec();
+
+        console.log("the course progress", courseProgressCount);
+
+        let totalDurationInSeconds = 0;
+        courseDetails?.courseContent?.forEach((section) => {
+            section?.subSection?.forEach((subSection) => {
+                totalDurationInSeconds =+ parseInt(subSection?.timeDuration);
+            })
+        })
+
+        const totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+
+        // return res
+        return res.status(200).json({
+            success:true,
+            data:{
+                courseDetails,
+                totalDuration,
+                completedVideos: courseProgressCount?.completedVideos ? courseProgressCount?.completedVideos : [],
+            }
+        })
+
     }
     catch(err){
-
+        return res.status(500).json({
+            success:false,
+            message:err.message,
+        })
     }
 }

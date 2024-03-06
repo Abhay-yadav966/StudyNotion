@@ -4,17 +4,16 @@ import { Outlet, useParams } from 'react-router-dom';
 import { getFullDetailsOfCourse } from '../services/operations/courseDetailsAPI'
 import { setCourseSectionData, setEntireCourseData, setCompletedLectures, setTotalNoOfLectures} from '../slices/viewCourseSlice'
 import VideoDetailsSidebar from '../components/core/ViewCourse/VideoDetailsSidebar';
+import CourseReviewModal from '../components/core/ViewCourse/CourseReviewModal';
 
 const ViewCourse = () => {
-
-  const [reviewModal, setReviewModal] = useState(null);
+  const [reviewModal, setReviewModal] = useState(false);
   const {courseId} = useParams();
   const {token} = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const setCourseSpecificDetails = async (courseId) => {
     const courseData = await getFullDetailsOfCourse(courseId, token);
-
     if( courseData ){
         dispatch(setCourseSectionData(courseData?.courseDetails?.courseContent));
         dispatch(setEntireCourseData(courseData?.courseDetails));
@@ -30,7 +29,7 @@ const ViewCourse = () => {
   // it will run on first render
   useEffect(() => {
     setCourseSpecificDetails(courseId);
-  }, []);
+  },[]);
 
   return (
     <div>

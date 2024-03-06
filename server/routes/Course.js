@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // impoting controllers
-const {createCourse, updateCourse,getAllCourses, getCourseDetails, getInstructorCourses, deleteCourse} = require("../controllers/Course");
+const {createCourse, updateCourse,getAllCourses, getCourseDetails, getInstructorCourses, deleteCourse, getFullCourseDetails} = require("../controllers/Course");
 
 // importing category controller
 const {createCategory, getAllCategories, categoryPageDetails} = require("../controllers/Category");
@@ -39,12 +39,15 @@ router.get("/getAllCourses", getAllCourses);
 // getCourseDetails
 router.post("/getCourseDetails", getCourseDetails);
 
+// getFullCourseDetails used to view course
+router.post("/getFullCourseDetails", auth, isStudent, getFullCourseDetails);
+
 // get Instructor courses
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses);
 
 // section routes
 // createSection 
-router.post("/addSection", auth, isInstructor, createSection);
+router.post("/addSection", auth, isInstructor, createSection); 
 
 // updateSection
 router.post("/updateSection", auth, isInstructor, updateSection);
