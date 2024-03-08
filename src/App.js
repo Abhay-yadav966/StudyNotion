@@ -26,6 +26,7 @@ import Catalog from "./Pages/Catalog";
 import CourseDetails from "./Pages/CourseDetails";
 import ViewCourse from "./Pages/ViewCourse";
 import VideoDetails from "./components/core/ViewCourse/VideoDetails";
+import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
 
 function App() {
 
@@ -155,6 +156,10 @@ function App() {
 
                 {/* edit course route */}
                 <Route path="/dashboard/edit-course" element={<EditCourse/>} />
+
+                {/* instructor Dashboard */}
+                <Route path="/dashboard/instructor" element={<Instructor/>} />
+
               </>
             )
           }

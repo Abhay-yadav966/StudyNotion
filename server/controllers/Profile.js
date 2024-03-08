@@ -2,6 +2,7 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const {uploadImageToCloudinary} = require("../utils/imageUploader");
+const Course = require("../models/Course");
 
 // update profile
 exports.updateProfile = async (req, res) => {
@@ -85,7 +86,19 @@ exports.deleteAccount = async (req, res) => {
 
         await Profile.findByIdAndDelete({_id:profileId});
 
-        // ToDO - jitta v course lia h waha se user ko unenroll krna hoga
+        // jitta v course lia h waha se user ko unenroll krna hoga
+        for( courseId of userDetails?.courses ){
+            const courseDetails = await Course.findByIdAndUpdate({_id:courseId},
+                                                                {
+                                                                    $pull:{
+                                                                        studentEnrolled:userId,
+                                                                    }
+                                                                },
+                                                                {new:true},   
+                );
+        }
+
+
         // delete user Account
         await User.findByIdAndDelete({_id:userId});
 
@@ -248,3 +261,43 @@ exports.getEnrolledCourses = async (req, res) => {
         });
     }
 } 
+
+
+// instructor Dashboard
+exports.instructorDasboard = async (req, res) => {
+    try{
+         const userId = req.user.id;
+
+        //  fetching course details
+        const courseDetails = await Course.find({instructor:userId});
+
+        // creating an array using map which contains course related details
+        const courseData = courseDetails.map((course) => {
+            const totalStudentsEnrolled = course?.studentEnrolled.length;
+            const totalAmountGenerated = course?.price * totalStudentsEnrolled;
+
+            // creating an obj that can be stored in a array upon return
+            const courseDataWithStats = {
+                _id:course?._id,
+                courseName:course?.courseName,
+                courseDescription:course?.courseDescription,
+                totalStudentsEnrolled,
+                totalAmountGenerated,
+            }
+
+            return courseDataWithStats;
+        })
+
+        return res.status(200).json({
+            success:true,
+            message:"Instuctor dashboard details fetched successfully",
+            courseData,
+        })
+    }
+    catch(error){
+        return res.status(500).json({
+            success:false,
+            message:"Something went wrong in fetching instructor dashboard Data"
+        });
+    }
+}

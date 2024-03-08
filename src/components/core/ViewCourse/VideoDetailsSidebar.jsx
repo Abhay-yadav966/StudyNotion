@@ -77,7 +77,7 @@ const VideoDetailsSidebar = ({setReviewModal}) => {
                     {/* up and down arrow */}
                     <div>
                       {
-                        activeStatus === sectionId ? <MdOutlineKeyboardArrowUp /> : <IoIosArrowDown />
+                        activeStatus === section?._id ? <MdOutlineKeyboardArrowUp /> : <IoIosArrowDown />
                       }
                     </div>
                   </div>

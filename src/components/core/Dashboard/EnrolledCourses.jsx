@@ -50,7 +50,7 @@ const EnrolledCourses = () => {
                                             <div key={index} className='border-b border-[#2C333F] p-4 flex items-center'  >
                                                 {/* image in left */}
                                                 <div className='w-2/4 flex' >
-                                                    <img src={element.thumbnail} alt={element?.courseName} height={"52px"} width={"52px"} className='rounded-lg object-cover' />
+                                                    <img src={element.thumbnail} alt={element?.courseName} height={"52px"} width={"52px"} className='rounded-lg object-cover aspect-square ' />
                                                     <div className='ml-5' >
                                                         <p className='font-medium text-base text-[#F1F2FF]' >{element?.courseName}</p>
                                                         <p className='font-normal text-base text-[#838894]' >{element?.courseDescription}</p>

@@ -23,7 +23,7 @@ exports.createRatingAndReviews = async (req, res) => {
             });
         }
  
-        const uid = mongoose.Types.ObjectId(userId); 
+        const uid = new mongoose.Types.ObjectId(userId); 
         console.log("uid ->>>", uid);
         
         if(courseDetails.studentEnrolled.includes(userId)){
@@ -44,7 +44,7 @@ exports.createRatingAndReviews = async (req, res) => {
             } 
 
             // create review and rating
-            const ratingReview = await Course.create({
+            const ratingReview = await RatingAndReviews.create({
                                         user:userId,
                                         rating:rating,
                                         review:review,

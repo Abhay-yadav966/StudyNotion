@@ -1,7 +1,15 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import '~video-react/dist/video-react.css';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import 'video-react/dist/video-react.css';
+import { FaPlay } from "react-icons/fa";
+import IconBtn from '../../common/IconBtn';
+import { useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { Player } from 'video-react';
+import { markLectureAsComplete,  } from '../../../services/operations/courseDetailsAPI';
+import {updateCompletedLectures} from '../../../slices/viewCourseSlice'
+
 
 const VideoDetails = () => {
 
@@ -60,7 +68,7 @@ const VideoDetails = () => {
       (section) => section?._id === sectionId
     )
 
-    const currentSubSectionIndex = courseSectionData[currentSectionIndex].subSectionId.findIndex(
+    const currentSubSectionIndex = courseSectionData[currentSectionIndex].subSection.findIndex(
       (data) => data._id === subSectionId
     )
     if( currentSectionIndex === 0 && currentSubSectionIndex === 0 ){
@@ -79,7 +87,7 @@ const VideoDetails = () => {
 
     const noOfSubSections = courseSectionData[currentSectionIndex]?.subSection.length;
 
-    const currentSubSectionIndex = courseSectionData[currentSectionIndex].subSectionId.findIndex(
+    const currentSubSectionIndex = courseSectionData[currentSectionIndex].subSection.findIndex(
       (data) => data._id === subSectionId
     )
 
@@ -159,7 +167,7 @@ const VideoDetails = () => {
   return (
     <div>
         {
-          videoData ? (<div>No Data Found</div>) : 
+          !videoData ? (<div>No Data Found</div>) : 
           (
             <Player
               ref = {playerRef}
@@ -169,6 +177,68 @@ const VideoDetails = () => {
               src={videoData?.videoUrl}
             >
 
+              {
+                videoEnded && (
+                  <div>
+
+                    {/* mark as completed */}
+                    {
+                      !completedLectures.includes(subSectionId) && (
+                        <IconBtn
+                          disabled={loading}
+                          onclick={() => handleLectureCompletion()}
+                        >
+                          {
+                            loading ? "Loading..." : "Mark As Completed"
+                          }
+                        </IconBtn>
+                      )
+                    }
+
+                    {/* Rewatch */}
+                    <IconBtn
+                      disabled={loading}
+                      onclick={() => {
+                        if( playerRef?.current ){
+                          playerRef?.current?.seek(0);
+                          setVideoEnded(false);
+                        }
+                      }}
+                    >
+                      Rewatch
+                    </IconBtn>
+
+                    {/* next and privious button */}
+                    <div>
+                      {/* privious button */}
+                      {
+                        !isFirstVideo() && (
+                          <button
+                            disabled={loading}
+                            onClick={goToPrevVideo}
+                            className=''
+                          >
+                            Prev
+                          </button>
+                        )
+                      }
+
+                      {/* next button */}
+                      {
+                        !isLastVideo() && (
+                          <button
+                            disabled={loading}
+                            onClick={goToNextVideo}
+                            className=''
+                          >
+                            Next
+                          </button>
+                        )
+                      }
+                    </div>
+                  </div>
+                )
+              }
             </Player>
           )
         }

@@ -11,6 +11,7 @@ import LearningLanguageSection from '../components/core/HomePage/LearningLanguag
 import InstructorSection from '../components/core/HomePage/InstructorSection';
 import ExploreMore from '../components/core/HomePage/ExploreMore';
 import Footer from '../components/common/Footer';
+import ReviewSlider from '../components/common/ReviewSlider';
 
 const Home = () => {
 
@@ -203,10 +204,14 @@ const Home = () => {
         </div>
 
         {/* section 3 */}
-        <div className='w-11/12 max-w-maxContent mx-auto flex flex-col items-center py-24 ' >
+        <div className='w-11/12 max-w-maxContent mx-auto flex flex-col items-center py-24 gap-8 ' >
             
             {/* instructor section */}
             <InstructorSection/>
+
+            {/* rating and review */}   
+            <ReviewSlider/>
+
         </div>
 
         {/* footer */}

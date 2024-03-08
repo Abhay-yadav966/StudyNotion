@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 
 // importing controllers 
-const {updateProfile, deleteAccount, getAllUserDetails, updateDisplayPicture, getEnrolledCourses} = require("../controllers/Profile");
+const {updateProfile, deleteAccount, getAllUserDetails, updateDisplayPicture, getEnrolledCourses, instructorDasboard} = require("../controllers/Profile");
 
 // importing middleware
-const {auth} = require("../middlewares/auth");
+const {auth, isInstructor} = require("../middlewares/auth");
 
 // routes
 
@@ -23,5 +23,8 @@ router.get("/getEnrolledCourses", auth, getEnrolledCourses);
 
 // update display picture
 router.put("/updateDisplayPicture", auth, updateDisplayPicture);
+
+// get instructor dashboard details
+router.get("/instructorDasboard", auth, isInstructor, instructorDasboard);
  
 module.exports = router; 

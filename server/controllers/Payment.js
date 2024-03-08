@@ -2,6 +2,7 @@
 const {instance} = require("../config/razorpay");
 const User = require("../models/User");
 const Course = require("../models/Course");
+const CourseProgress = require("../models/CourseProgress");
 const {mailSender} = require("../utils/MailSender");
 const {courseEnrollmentEmail} = require("../mail/templates/courseEnrollmentEmail");
 const mongoose = require("mongoose");
@@ -150,11 +151,19 @@ const enrollStudents = async (courses, userId, res) => {
                 })
             }
 
+            // creating the course progress for the student
+            const courseProgress = await CourseProgress.create({
+                courseId:courseId,
+                userId:userId,
+                completedVideos:[],
+            });
+
             // find the student and add the course to their list of enrolledCourses
             const enrolledStudents = await User.findByIdAndUpdate({_id:userId},
                                                                     {
                                                                         $push:{
                                                                             courses:courseId,
+                                                                            courseProgress:courseProgress?._id,
                                                                         }
                                                                     },
                                                                     {new:true});

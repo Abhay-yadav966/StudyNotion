@@ -29,6 +29,7 @@ export const settingsEndpoints = {
 export const profileEndpoints = {
     GET_USER_DETAILS_API : BASE_URL + "/profile/getUserDetails",
     GET_USER_ENROLLED_COURSES_API : BASE_URL + "/profile/getEnrolledCourses", 
+    GET_INSTRUCTOR_DATA_API : BASE_URL + "/profile/instructorDasboard",
 }
 
 
@@ -58,3 +59,8 @@ export const courseEndpoints = {
     LECTURE_COMPLETION_API: BASE_URL + "/course/updateCourseProgress",
     CREATE_RATING_API: BASE_URL + "/course/createRating",
   }
+
+//   rating and review Endpoints
+export const ratingsEndPoints = {
+    REVIEWS_DETAILS_API: BASE_URL + "/course/getReviews",
+}

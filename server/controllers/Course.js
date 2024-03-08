@@ -238,7 +238,7 @@ exports.deleteCourse = async (req, res) => {
             await User.findByIdAndUpdate({_id:userId},
                                             {
                                                 $pull: { courses: courseId}
-                                            })
+                                            }, {new:true})
         });
 
         // delete section and subsections
