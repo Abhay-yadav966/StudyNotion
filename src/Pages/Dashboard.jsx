@@ -4,7 +4,7 @@ import Sidebar from '../components/core/Dashboard/Sidebar';
 
 const Dashboard = () => {
   return (
-    <div className='h-screen flex' >
+    <div className='h-[calc(100vh-20px)] flex' >
 
         {/* sidebar */}
         <Sidebar/>

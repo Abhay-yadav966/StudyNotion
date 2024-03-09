@@ -32,10 +32,12 @@ const ViewCourse = () => {
   },[]);
 
   return (
-    <div>
-        <VideoDetailsSidebar setReviewModal={setReviewModal} />
+    <div className='flex min-h-[calc(100vh-20px)] w-screen relative ' >
         <div>
-          <div>
+          <VideoDetailsSidebar setReviewModal={setReviewModal} />
+        </div>
+        <div className='w-full h-full overflow-auto ' >
+          <div className='mx-auto w-11/12 max-w-[1000px] ' >
             <Outlet/>
           </div>
         </div>

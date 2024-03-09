@@ -3,6 +3,8 @@ const Profile = require("../models/Profile");
 const User = require("../models/User");
 const {uploadImageToCloudinary} = require("../utils/imageUploader");
 const Course = require("../models/Course");
+const {convertSecondsToDuration} = require("../utils/secToDuration");
+const CourseProgress = require("../models/CourseProgress")
 
 // update profile
 exports.updateProfile = async (req, res) => {
@@ -226,7 +228,7 @@ exports.getEnrolledCourses = async (req, res) => {
         }
 
         // course datails
-        const userDetails = await User.findById({_id:userId}).populate({
+        let userDetails = await User.findById({_id:userId}).populate({
                                                                         path:"courses",
                                                                         populate:{
                                                                             path:"courseContent",
@@ -235,6 +237,44 @@ exports.getEnrolledCourses = async (req, res) => {
                                                                             }
                                                                         }
                                                                     }).exec();
+
+        userDetails = userDetails.toObject()
+        var subSectionLength = 0;
+        for( let i = 0; i < userDetails?.courses?.length; i++ ){
+            let totalDurationInSeconds = 0
+            subSectionLength = 0
+            for( let j = 0; j < userDetails?.courses[i]?.courseContent?.length; j++ ){
+                
+                userDetails?.courses[i]?.courseContent[j]?.subSection.forEach( (subSection) => {
+                    totalDurationInSeconds = totalDurationInSeconds + parseInt(subSection?.timeDuration);
+                })
+
+                // calculating totalDuration of course in seconds
+                userDetails.courses[i].totalDuration = convertSecondsToDuration(totalDurationInSeconds);
+
+                // calculating total length of subSection
+                subSectionLength = subSectionLength + userDetails?.courses[i]?.subSection?.length;
+            }
+
+            // fetching course progress count
+            let courseProgressDetails = await CourseProgress.findOne({
+                courseId:userDetails?.courses[i]?._id,
+                userId:userId,
+            })
+
+            courseProgressCount = courseProgressDetails?.completedVideos?.length 
+
+            if( subSectionLength === 0 ){
+                userDetails.courses[i].progressPercentage = 100;
+            }
+            else{
+                // To make it up to 2 decimal point
+                const multiplier = Math.pow(10, 2);
+                userDetails.courses[i].progressPercentage = Math.round( (courseProgressCount / subSectionLength) * 100 * multiplier) / multiplier;
+            }
+        }
+
+
 
         // validate
         if(!userDetails){

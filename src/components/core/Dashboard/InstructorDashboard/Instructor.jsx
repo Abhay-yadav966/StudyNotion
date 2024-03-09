@@ -2,6 +2,8 @@ import React, { useState ,useEffect } from 'react'
 import {fetchInstructorCourses} from '../../../../services/operations/courseDetailsAPI'
 import {getInstructorData} from '../../../../services/operations/profileAPI'
 import { useSelector } from 'react-redux'
+import InstructorChart from './InstructorChart'
+import { Link } from 'react-router-dom'
 
 const Instructor = () => {
 
@@ -75,7 +77,7 @@ const Instructor = () => {
                 ?(
                     <div>
                         <div>
-                            <InstructorChart instructorData={instructorData} />
+                            <InstructorChart courses={instructorData} />
                             <div>
                                 <p>Statistics</p>
                                 <div>

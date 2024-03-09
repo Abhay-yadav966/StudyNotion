@@ -6,7 +6,7 @@ import { FaPlay } from "react-icons/fa";
 import IconBtn from '../../common/IconBtn';
 import { useRef } from 'react';
 import { useState, useEffect } from 'react';
-import { Player } from 'video-react';
+import { Player , BigPlayButton } from 'video-react';
 import { markLectureAsComplete,  } from '../../../services/operations/courseDetailsAPI';
 import {updateCompletedLectures} from '../../../slices/viewCourseSlice'
 
@@ -165,9 +165,9 @@ const VideoDetails = () => {
   }
 
   return (
-    <div>
+    <div className='flex flex-col gap-5 text-white my-5 ' >
         {
-          !videoData ? (<div>No Data Found</div>) : 
+          !videoData ? (<div className='font-medium text-3xl text-[#c3c4c7]' >No Data Found</div>) : 
           (
             <Player
               ref = {playerRef}
@@ -177,9 +177,12 @@ const VideoDetails = () => {
               src={videoData?.videoUrl}
             >
 
+              {/* play button */}
+              <BigPlayButton position="center" />
+
               {
                 videoEnded && (
-                  <div>
+                  <div className=' absolute h-full w-full inset-0 z-[100] flex items-center justify-center gap-2 ' >
 
                     {/* mark as completed */}
                     {
@@ -216,7 +219,7 @@ const VideoDetails = () => {
                           <button
                             disabled={loading}
                             onClick={goToPrevVideo}
-                            className=''
+                            className='cursor-pointer rounded-md bg-richblack-800 px-[20px] py-[8px] font-semibold text-richblack-5'
                           >
                             Prev
                           </button>
@@ -229,7 +232,7 @@ const VideoDetails = () => {
                           <button
                             disabled={loading}
                             onClick={goToNextVideo}
-                            className=''
+                            className='cursor-pointer rounded-md bg-richblack-800 px-[20px] py-[8px] font-semibold text-richblack-5'
                           >
                             Next
                           </button>
@@ -242,6 +245,9 @@ const VideoDetails = () => {
             </Player>
           )
         }
+
+        <h1 className='mt-4 text-3xl font-semibold' >{videoData?.title}</h1>
+        <p className='pt-2 pb-6' >{videoData?.description}</p>
     </div>
   )
 }

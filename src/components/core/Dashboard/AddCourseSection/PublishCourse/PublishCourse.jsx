@@ -7,6 +7,7 @@ import { resetCourseState , setStep} from '../../../../../slices/courseSlice';
 import { COURSE_STATUS } from '../../../../../utils/constants'
 import { editCourseDetails } from '../../../../../services/operations/courseDetailsAPI';
 import { useNavigate } from 'react-router-dom';
+import { IoIosArrowBack } from "react-icons/io";
 
 
 const PublishCourse = () => {
@@ -69,28 +70,31 @@ const PublishCourse = () => {
   }
 
   return (
-    <div>
+    <div className='rounded-lg border border-[#2C333F] p-6 bg-[#161D29] flex flex-col gap-6 mt-16 ' >
         {/* heading */}
-        <p>Publish Course</p>
+        <p className='font-semibold text-2xl text-[#F1F2FF]' >Publish Course</p>
 
         {/* form */}
-        <form onSubmit={handleSubmit(onSubmit)} >
-          <label>
+        <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-8' >
+          <label className='flex gap-2 items-center' >
             <input 
               type='checkbox'
               {...register("public")}
+              className=' text-[#585D69] h-4 w-4 rounded bg-richblack-500 '
             />
-            <span>Make this Course Public</span>
+            <span className='ml-2 font-medium text-base text-[#6E727F] ' >Make this Course as Public</span>
           </label>
         
 
           {/* buttons */}
-          <div>
+          <div className='flex items-center justify-end gap-x-4  w-full ' >
             <button
               type='button'
               disabled={loading}
               onClick={() => dispatch(setStep(2))}
+              className='flex cursor-pointer items-center gap-x-2 rounded-md bg-richblack-300 py-[8px] px-[20px] font-semibold text-richblack-900'
             >
+              <IoIosArrowBack />
               Back
             </button>
 

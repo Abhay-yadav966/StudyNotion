@@ -61,7 +61,7 @@ const EnrolledCourses = () => {
                                                     <p className='font-medium text-base text-[#C5C7D4]' >
                                                         {
                                                             /* total duration */
-                                                            /* todo */
+                                                            <p>{element?.totalDuration}</p>
                                                         }
                                                     </p>
                                                 </div>

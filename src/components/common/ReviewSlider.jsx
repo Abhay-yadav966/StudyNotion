@@ -39,7 +39,7 @@ const ReviewSlider = () => {
 
   return (
     <div>
-      <h2></h2>
+      <h2>Reviews from other learners</h2>
       <Swiper
         slidesPerView={4}
         spaceBetween={24}
