@@ -52,3 +52,6 @@ This project is intended as a learning tool and can be used as a project for edu
 You can add your own tailwind.config.js file to customize your Tailwind setup.
 ## Contributions
 Contributions are welcome! If you have any suggestions or find any issues, please feel free to open an issue or a pull request.
+
+
+# done
