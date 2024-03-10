@@ -1,6 +1,6 @@
 const Section = require("../models/Section");
 const Course = require("../models/Course");
-const { RiCarWashingLine } = require("react-icons/ri");
+
 
 
 // create section
