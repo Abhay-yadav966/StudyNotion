@@ -2,7 +2,7 @@ import React from 'react'
 import IconBtn from './IconBtn';
 
 const ConfirmationModal = ({modalData}) => {
-    console.log("modal data inside confirmation component", modalData);
+    
   return (
     <div className='w-11/12 max-w-[350px] rounded-lg border border-richblack-400 bg-richblack-800 p-6 absolute right-[37%] top-[40%] ' >
         <p className='text-2xl font-semibold text-richblack-5 ' >{modalData.heading}</p>

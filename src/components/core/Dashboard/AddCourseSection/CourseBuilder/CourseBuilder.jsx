@@ -91,7 +91,6 @@ const CourseBuilder = () => {
 
     // update values
     if( result ){
-      console.log("The result ->", result); //.....
       dispatch(setCourse(result));
       setEditSectionName(false);
       setValue("sectionName", "");

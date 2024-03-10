@@ -25,7 +25,7 @@ const EnrolledCourses = () => {
     // calling the function that will triger the function which will fetch the data from the backend
     useEffect( () => {
         getEnrolledCourses();
-    }, [] );
+    },[]);
 
   return (
     <div className='py-10 flex flex-col gap-10 ' >

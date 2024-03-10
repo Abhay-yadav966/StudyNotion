@@ -48,8 +48,8 @@ const UpdatePassword = () => {
     <form onSubmit={handleSubmit(passwordUpdate)} >
         <div className='flex flex-col gap-6 rounded-lg border border-richblack-700 bg-richblack-800 p-8 px-12 ' >
             <h3 className='font-semibold text-lg text-richblack-5'  >Password</h3>
-            <div className='flex gap-6 justify-between ' >
-                <label className='flex flex-col gap-2 w-[50%] relative ' >
+            <div className='flex flex-col lg:flex-row gap-6 justify-between ' >
+                <label className='flex flex-col gap-2 w-[100%] lg:w-[50%] relative ' >
                     <p className='font-medium text-sm text-richblack-5' >Current Password</p>
                     <input
                         type={`${showOldPassword ? "text" : "password"}`}
@@ -74,7 +74,7 @@ const UpdatePassword = () => {
                     </div>
                 </label>
 
-                <lable className='flex flex-col gap-2 w-[50%] relative ' >
+                <lable className='flex flex-col  gap-2 w-[100%] lg:w-[50%] relative ' >
                     <p className='font-medium text-sm text-richblack-5' >New Password</p>
                     <input
                         type={`${showNewPassword ? "text" : "password"}`}

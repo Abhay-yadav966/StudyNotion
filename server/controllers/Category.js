@@ -23,7 +23,7 @@ exports.createCategory = async (req, res) => {
             name:name,
             description:description,
         });
-        console.log(categoryDetails);
+        
 
         // return responce
         return res.status(200).json({
@@ -32,7 +32,6 @@ exports.createCategory = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -56,7 +55,6 @@ exports.getAllCategories = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -70,8 +68,6 @@ exports.categoryPageDetails = async (req, res) => {
     try{
         // fetch data
         const {categoryId} = req.body;
-
-        console.log("type of category id", typeof(categoryId));
 
         // fetch courses related to category
         const selectedCategory = await  Category.findById({_id:categoryId})
@@ -155,7 +151,6 @@ exports.categoryPageDetails = async (req, res) => {
         });
     }
     catch(err){
-        console.log(" Error -> ", err);
         return res.status(500).json({
             success:false,
             error:err.message,

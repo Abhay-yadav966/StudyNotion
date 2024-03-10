@@ -38,8 +38,6 @@ exports.createCourse = async (req, res) => {
         const userId = req.user.id;
         const instructorDetails = await User.findById(userId);
 
-        console.log("Instructor Details", instructorDetails);
-
         if( !instructorDetails ){
             return res.status(404).json({
                 success:false,
@@ -121,7 +119,6 @@ exports.createCourse = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -289,7 +286,6 @@ exports.getAllCourses = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -344,7 +340,6 @@ exports.getCourseDetails = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -429,8 +424,6 @@ exports.getFullCourseDetails = async (req, res) => {
 
         // fetching course progress
         let courseProgressCount = await CourseProgress.findOne({courseId : courseId}).populate("completedVideos").exec();
-
-        console.log("the course progress", courseProgressCount);
 
         let totalDurationInSeconds = 0;
         courseDetails?.courseContent?.forEach((section) => {

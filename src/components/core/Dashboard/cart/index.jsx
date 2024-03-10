@@ -16,7 +16,7 @@ const Cart = () => {
         {
             total > 0 ? 
             (
-                <div className='flex justify-between gap-10 ' >
+                <div className='flex flex-col-reverse lg:flex-row justify-between lg:gap-10 ' >
                     <RenderCartCourses/>
                     <RenderTotalAmount/>
                 </div>

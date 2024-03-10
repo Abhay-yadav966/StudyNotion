@@ -50,7 +50,6 @@ export const login = (email, password, navigate) => {
             toast.success("Login Successfully");
 
             dispatch(setToken(responce.data.token));
-            console.log("token", responce.data.token);
             dispatch(setProfile(responce.data.user));
 
             localStorage.setItem("token", JSON.stringify(responce.data.token));
@@ -80,7 +79,7 @@ export const logout = (navigate) => {
         dispatch(setLoading(true));
         const toastID = toast.loading("Loading...");
         try{
-            console.log("logout trigger");
+
             dispatch(setToken(null));
 
             dispatch(setProfile(null));

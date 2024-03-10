@@ -55,7 +55,6 @@ exports.updateProfile = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -66,7 +65,6 @@ exports.updateProfile = async (req, res) => {
 
 
 // delete Profile
-
 exports.deleteAccount = async (req, res) => {
     try{
         // get user id
@@ -111,7 +109,6 @@ exports.deleteAccount = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -156,7 +153,6 @@ exports.getAllUserDetails = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -171,8 +167,6 @@ exports.updateDisplayPicture = async (req, res) => {
         // fetch data from req.
         const displayPicture = req.files.displayPicture;
         const userId = req.user.id;
-        console.log("DP ->",displayPicture);
-        console.log("userid ->", userId)
 
         // validation
         if( !displayPicture || !userId){
@@ -184,7 +178,6 @@ exports.updateDisplayPicture = async (req, res) => {
 
         // upload image to cloudinary
         const image = await uploadImageToCloudinary(displayPicture, process.env.FOLDER_NAME, 1000, 1000);
-        console.log(image);
 
         // update user model
         const updatedUser = await User.findByIdAndUpdate(
@@ -205,7 +198,6 @@ exports.updateDisplayPicture = async (req, res) => {
 
     } 
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             message:"Something went wrong in updating Profile picture",
@@ -293,7 +285,6 @@ exports.getEnrolledCourses = async (req, res) => {
         
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,

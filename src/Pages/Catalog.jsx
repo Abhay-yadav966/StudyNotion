@@ -17,7 +17,7 @@ const Catalog = () => {
 
   // catalog data 
   const [catalogPageData, setCatalogPageData] = useState(null);
-  console.log("The outside catalog page data", catalogPageData);
+  
   // catagory id
   const [categoryId, setCategoryId] = useState(null);
 

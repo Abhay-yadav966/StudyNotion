@@ -62,7 +62,6 @@ export const buyCourse = async (token, courses, userDetails, navigate, dispatch)
                 email:userDetails.email,
             },
             handler: function(response){
-                console.log("handler fn");
                 // send successful email
                 SendPaymentSuccessEmail( response, orderResponse?.data?.paymentResponse?.amount, token);
                 // verify Payment
@@ -87,7 +86,6 @@ export const buyCourse = async (token, courses, userDetails, navigate, dispatch)
 
 async function SendPaymentSuccessEmail( responce, amount, token ){
     try{
-        console.log("abhay");
         await apiConnector("POST", SEND_PAYMENT_SUCCESS_EMAIL_API, {orderId: responce.razorpay_order_id, paymentId: responce.razorpay_payment_id, amount}, 
                                                                     {
                                                                         Authorization:`Bearer ${token}`
@@ -104,7 +102,6 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
     const toastId = toast.loading("Loading...");
     dispatch(setPaymentLoading(true));
     try{
-        console.log("we are verified");
         const response = await apiConnector("POST", COURSE_VERIFY_API, bodyData, 
                                                                         {
                                                                             Authorization : `Bearer ${token}`,

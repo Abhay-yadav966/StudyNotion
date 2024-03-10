@@ -104,7 +104,6 @@ const CourseDetails = () => {
 
   // fetching data on 1st rendering
   useEffect(() => {
-    console.log("value of course id", courseId);
     getCourseDetails(courseId);
   }, [courseId]);
 

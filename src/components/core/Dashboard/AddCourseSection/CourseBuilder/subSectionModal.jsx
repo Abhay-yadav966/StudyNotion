@@ -10,9 +10,6 @@ import toast from 'react-hot-toast';
 
 // here i have mark value of add, view and edit value by default false.
 const SubSectionModal = ({ modalData, setModalData, add = false,  view = false, edit = false }) => {
-    console.log("inside sub section");
-    console.log("the value of add:", add);
-    console.log("the value of modal data", modalData);
 
     const dispatch = useDispatch();
 

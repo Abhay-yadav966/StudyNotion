@@ -46,7 +46,6 @@ export const fetchCourseDetails = async (courseId) => {
   //   dispatch(setLoading(true));
   let result = null;
   try {
-    console.log("glich");
     const response = await apiConnector("POST", COURSE_DETAILS_API, {
       courseId,
     })
@@ -188,7 +187,6 @@ export const updateSection = async (data, token) => {
     }
     toast.success("Course Section Updated")
     result = response?.data?.courseDetails;
-    console.log("The course details", response?.data?.courseDetails); // ...
   } catch (error) {
     console.log("UPDATE SECTION API ERROR............", error)
     toast.error(error.message)
@@ -240,6 +238,7 @@ export const deleteSection = async (data, token) => {
   toast.dismiss(toastId)
   return result
 }
+
 // delete a subsection
 export const deleteSubSection = async (data, token) => {
   let result = null
@@ -342,7 +341,6 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
 // mark a lecture as complete
 export const markLectureAsComplete = async (data, token) => {
   let result = null
-  console.log("mark complete data", data)
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", LECTURE_COMPLETION_API, data, {

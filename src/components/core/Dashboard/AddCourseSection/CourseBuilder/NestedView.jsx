@@ -22,7 +22,7 @@ const NestedView = ({handleChangeEditSSectionName}) => {
     const [addSubsection, setAddSubSection] = useState(null);
     const [ viewSubSection, setViewSubSection ] = useState(null);
     const [editSubSection, setEditSubSection] = useState(null);
-    console.log("add subsection", addSubsection);
+    
 
     // confirmation modal
     const [confirmationModal, setConfirmationModal] = useState(null);  

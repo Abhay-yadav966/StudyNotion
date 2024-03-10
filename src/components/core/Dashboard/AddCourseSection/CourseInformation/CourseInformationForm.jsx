@@ -90,7 +90,7 @@ const CourseInformationForm = () => {
 
   // on submit fn
   const onSubmit = async (data) => {
-    console.log("Course data -> ", data);
+  
     
     // if we are here to edit a course
     if( editCourse ){

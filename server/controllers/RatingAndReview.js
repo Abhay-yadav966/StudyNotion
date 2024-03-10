@@ -24,7 +24,6 @@ exports.createRatingAndReviews = async (req, res) => {
         }
  
         const uid = new mongoose.Types.ObjectId(userId); 
-        console.log("uid ->>>", uid);
         
         if(courseDetails.studentEnrolled.includes(userId)){
 
@@ -72,7 +71,6 @@ exports.createRatingAndReviews = async (req, res) => {
 
 
     }catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -119,7 +117,6 @@ exports.getAverageRating = async (req, res) => {
         });
 
     }catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -150,7 +147,6 @@ exports.allRatingReview = async (req, res) => {
             allRatingReview,
         });
     }catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,

@@ -46,7 +46,7 @@ const ContactUsForm = () => {
                             name='firstName'
                             placeholder='Enter first name'
                             {...register("firstName", {required:true})}
-                            className='rounded-lg p-3 bg-richblack-800 CTAblackbutton '
+                            className='rounded-lg p-3 bg-richblack-800 CTAblackbutton outline-none'
                         />
 
                         {/* error */}
@@ -64,7 +64,7 @@ const ContactUsForm = () => {
                             name='lastName'
                             placeholder='Enter last name'
                             {...register("lastName")}
-                            className='rounded-lg p-3 bg-richblack-800 CTAblackbutton '
+                            className='rounded-lg p-3 bg-richblack-800 CTAblackbutton outline-none '
                         />
 
                     </label>
@@ -79,7 +79,7 @@ const ContactUsForm = () => {
                         name='email'
                         placeholder='Email Address'
                         {...register("email", {required:true})}
-                        className='rounded-lg p-3 bg-richblack-800 CTAblackbutton '
+                        className='rounded-lg p-3 bg-richblack-800 CTAblackbutton outline-none '
                     />
 
                     {/* errors */}
@@ -95,7 +95,7 @@ const ContactUsForm = () => {
                     <p className='font-normal text-sm text-richblack-5 ' >Phone Number</p>
                     <div className='flex gap-6 ' >
                         {/* drop down */}
-                        <select className=' w-[75px] rounded-lg p-3 bg-richblack-800 CTAblackbutton outline-none font-medium text-base text-richblack-200 ' >
+                        <select className=' w-[75px] rounded-lg p-3 bg-richblack-800 CTAblackbutton outline-none font-medium text-base text-richblack-200  ' >
                             {
                                 CountryCode.map( (element, index) => (
                                     <option key={index} value={element.code} >
@@ -111,7 +111,7 @@ const ContactUsForm = () => {
                             name='contactNumber'
                             placeholder='Enter contact number'
                             {...register("contactNumber", {required:true, maxLength:{value:10}, minLength:{value:8}})}
-                            className='rounded-lg p-3 bg-richblack-800 CTAblackbutton w-[85%]'
+                            className='rounded-lg p-3 bg-richblack-800 CTAblackbutton w-[85%] outline-none '
                         />
 
                     </div>
@@ -132,7 +132,7 @@ const ContactUsForm = () => {
                         cols={30}
                         rows={7}
                         {...register("message", {required:true})}
-                        className='rounded-lg p-3 bg-richblack-800 CTAblackbutton '
+                        className='rounded-lg p-3 bg-richblack-800 CTAblackbutton outline-none '
                     />
 
                     {/* errors */}

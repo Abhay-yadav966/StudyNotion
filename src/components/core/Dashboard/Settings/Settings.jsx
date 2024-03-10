@@ -12,7 +12,6 @@ const Settings = () => {
 
     const {token} = useSelector((state) => state.auth);
     const {user} = useSelector((state) => state.profile);
-    console.log("printing token ", token )
 
     const dispatch = useDispatch();
 
@@ -51,7 +50,7 @@ const Settings = () => {
     }, [isSubmitSuccessful])
 
   return (
-    <div className='flex flex-col gap-10 p-10' >
+    <div className='flex flex-col gap-10 p-10 w-full ' >
         {/* heading */}
         <h1 className='font-semibold text-3xl text-richblack-5 pb-5 ' >Edit Profile</h1>
 
@@ -64,16 +63,16 @@ const Settings = () => {
             <div className='flex flex-col gap-6 rounded-lg border border-richblack-700 bg-richblack-800 p-8 px-12 ' >
                 <h3 className='font-semibold text-lg text-richblack-5' >Profile Information</h3>
                 <div className='flex flex-col gap-6' >
-                    <div className='flex gap-6 justify-between' >
+                    <div className='flex flex-col lg:flex-row gap-6 justify-between  ' >
                         {/* first name */}
-                        <label className='flex flex-col gap-2 w-[50%] ' >
+                        <label className='flex flex-col gap-2 w-[100%] lg:w-[50%] ' >
                             <p className='font-medium text-sm text-richblack-5' >First Name</p>
                             <input type="text" 
                                 name='firstName'       
                                 placeholder='Enter first name'
                                 {...register("firstName",{required:true})}
                                 defaultValue={user?.firstName}
-                                className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5'
+                                className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             />
 
                             {/* if error occur */}
@@ -85,7 +84,7 @@ const Settings = () => {
                         </label>
 
                         {/* last name */}
-                        <label className='flex flex-col gap-2 w-[50%]' >
+                        <label className='flex flex-col gap-2 w-[100%] lg:w-[50%]' >
                             <p className='font-medium text-sm text-richblack-5' >Last Name</p>
                             <input 
                              type="text"
@@ -93,7 +92,7 @@ const Settings = () => {
                              placeholder='Enter Last name'
                              {...register("lastName", {required:true})} 
                              defaultValue={user?.lastName}
-                             className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5'
+                             className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                              />
 
                              {/* if an error occur */}
@@ -105,15 +104,15 @@ const Settings = () => {
                         </label>
                     </div>
 
-                    <div className='flex gap-6 justify-between ' >
+                    <div className='flex flex-col lg:flex-row gap-6 justify-between ' >
                         {/* DOB */}
-                        <label className='flex flex-col gap-2 w-[50%]' >
+                        <label className='flex flex-col gap-2 w-[100%] lg:w-[50%]' >
                             <p className='font-medium text-sm text-richblack-5' >Date of Birth</p>
                             <input type="date" 
                                    name="dateOfBirth"
                                    {...register("dateOfBirth",{required:true})}
                                     defaultValue={user?.additionDetails?.dateOfBirth}
-                                    className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5'
+                                    className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             />
 
                             {/* if error occur */}
@@ -125,13 +124,13 @@ const Settings = () => {
                         </label>
 
                         {/* gender */}
-                        <label className='flex flex-col gap-2 w-[50%]' >
+                        <label className='flex flex-col gap-2 w-[100%] lg:w-[50%]' >
                             <p className='font-medium text-sm text-richblack-5' >Gender</p>
                             <select 
                                 name="gender"
                                 {...register("gender", {required:true})}
                                 defaultValue={user?.additionDetails?.gender}
-                                className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5'
+                                className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             >
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
@@ -142,9 +141,9 @@ const Settings = () => {
                         </label>
                     </div>
 
-                    <div className='flex gap-6 justify-between ' >    
+                    <div className='flex flex-col lg:flex-row gap-6 justify-between ' >    
                         {/* contact no. */}
-                        <label className='flex flex-col gap-2 w-[50%]' >
+                        <label className='flex flex-col gap-2 w-[100%] lg:w-[50%]' >
                             <p className='font-medium text-sm text-richblack-5' >Contact Number</p>
                             <input type="text" 
                                    name="contactNumber"
@@ -152,7 +151,7 @@ const Settings = () => {
                                    {...register("contactNumber",{required:true})}
                                     maxLength={10}
                                     defaultValue={user?.additionDetails?.contactNumber}
-                                    className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5'
+                                    className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             />
 
                             {/* if an error occur */}
@@ -164,7 +163,7 @@ const Settings = () => {
                         </label>
 
                         {/* about */}
-                        <label className='flex flex-col gap-2 w-[50%]' >
+                        <label className='flex flex-col gap-2 w-[100%] lg:w-[50%]' >
                             <p className='font-medium text-sm text-richblack-5' >About</p>
                             <input 
                                 type="text" 
@@ -172,7 +171,7 @@ const Settings = () => {
                                 placeholder='Enter Bio Details'
                                 {...register("about", {required:true})}
                                 defaultValue={user?.additionDetails?.about}
-                                className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5'
+                                className='p-3 rounded-lg bg-richblack-700 CTAblackbutton font-medium text-base text-richblack-5 outline-none '
                             />
 
                             {/* if an error occur */}

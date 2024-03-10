@@ -23,11 +23,9 @@ exports.auth = async (req, res, next) => {
         // verify/decode the token
         try{
             const decode =  jwt.verify(token, process.env.JWT_SECRET);
-            console.log("token after verified",decode);
             req.user = decode;
         }
         catch(err){
-            console.log(err);
             return res.status(401).json({
                 success:false,
                 message:"Token is invalid",
@@ -39,7 +37,6 @@ exports.auth = async (req, res, next) => {
 
     }
     catch(err){ 
-        console.log(err);
         return res.status(500).json({
             success:false,
             message:"Something went wrong in validating the token",
@@ -59,7 +56,6 @@ exports.isStudent = async (req, res, next) => {
         next();
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             message:"User role is not matching",
@@ -79,7 +75,6 @@ exports.isInstructor = async (req, res, next) => {
         next();
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             message:"User role is not matching"
@@ -99,7 +94,6 @@ exports.isAdmin = async (req, res, next) => {
         next();
     }
     catch(err){ 
-        console.log(err);
         return res.status(500).json({
             success:false,
             message:"User role is not matching"

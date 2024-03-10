@@ -16,7 +16,6 @@ export function updateDisplayPicture(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     try {
-      console.log("form data ->", formData);
       const response = await apiConnector(
         "PUT",
         UPDATE_DISPLAY_PICTURE_API,
@@ -48,7 +47,6 @@ export function updateProfile(token, formData) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     try {
-      console.log(" abhay token", token);
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, 
       {
         "Content-Type":"application/json",
@@ -97,7 +95,6 @@ export function deleteProfile(token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     try {
-      console.log("inside the delete profile apis");
       const response = await apiConnector("DELETE", DELETE_PROFILE_API, null, {
         Authorization: `Bearer ${token}`,
       })

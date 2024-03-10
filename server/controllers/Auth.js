@@ -34,7 +34,6 @@ exports.sendOTP = async (req, res) => {
             specialChars:false,
         })
 
-        console.log("Generated OTP:", otp);
 
         // check opt is unique or not
         let result = await OTP.findOne({otp:otp});
@@ -66,7 +65,6 @@ exports.sendOTP = async (req, res) => {
         });
     } 
     catch(err){
-        console.log(err);
         res.status(500).json({
             success:false,
             error:err.message,
@@ -77,7 +75,6 @@ exports.sendOTP = async (req, res) => {
  
 
 // SignUp
-
 exports.signUp = async (req, res) => {
     try{
         // fetch data from req body
@@ -122,7 +119,7 @@ exports.signUp = async (req, res) => {
         // find most recent stored otp in DB
         const recentOTP = await OTP.find({email:email}).sort({createdAt:-1}).limit(1);
         // const recentOTP = await OTP.find({email:email});
-        console.log("otp from dbms -----", recentOTP);
+        
 
 
         // otp validate
@@ -172,7 +169,6 @@ exports.signUp = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         res.status(500).json({
             success:false,
             error:err.message,
@@ -218,7 +214,7 @@ exports.logIn = async (req, res) => {
             const token = jwt.sign(payload, process.env.JWT_SECRET, {
                 expiresIn:"2h",
             });
-            console.log("token", token);
+            
             user.token = token;
             user.password = undefined;  
 
@@ -245,7 +241,7 @@ exports.logIn = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
+        
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -284,13 +280,6 @@ exports.changePassword = async (req, res) => {
             });
         }
 
-        // Match newPassword and confirmNewPassword
-        // if(newPassword !== confirmNewPassword){
-        //     return res.status(400).json({
-        //         success:false,
-        //         message:"The password and confirm password does not match",
-        //     });
-        // }
 
         // update Password
         const encryptedPassword = await bcrypt.hash(newPassword, 10);
@@ -323,7 +312,6 @@ exports.changePassword = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,

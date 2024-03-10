@@ -8,7 +8,7 @@ import Stats from '../components/core/AboutPage/Stats';
 import LearningGrid from '../components/core/AboutPage/LearningGrid';
 import ContactUsSection from '../components/core/AboutPage/ContactUsSection';
 import Footer from '../components/common/Footer'
-
+import ReviewSlider from '../components/common/ReviewSlider';
 
 
 
@@ -97,7 +97,9 @@ const About = () => {
         <ContactUsSection/> 
 
         {/* rating and review */}
-
+        <div className='w-11/12 max-w-maxContent mx-auto my-28 ' >
+            <ReviewSlider/>
+        </div>
 
         {/* footer */}
         <Footer/>

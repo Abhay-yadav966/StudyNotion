@@ -40,7 +40,6 @@ exports.createSection = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -83,7 +82,6 @@ exports.updateSection = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -99,8 +97,6 @@ exports.deleteSection = async (req, res) => {
         // fetch data from params
         const {sectionId, courseId} = req.body; 
 
-        console.log("section id ->",sectionId);
-        console.log("course id -> ",courseId);
 
         // delete section
         const SectionDetails = await Section.findByIdAndDelete({_id:sectionId});
@@ -124,7 +120,6 @@ exports.deleteSection = async (req, res) => {
         });
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,

@@ -10,7 +10,7 @@ import { IoMdArrowRoundBack } from "react-icons/io";
 const VideoDetailsSidebar = ({setReviewModal}) => {
 
     const [ activeStatus, setActiveStatus ] = useState("");
-    console.log("Value of active status ->", activeStatus);
+  
     // const [ videoBarActive, setVideoBarActive ] = useState("");
     const navigate = useNavigate();
     const location = useLocation();

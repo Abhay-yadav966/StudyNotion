@@ -4,6 +4,7 @@ import { BsGlobeEuropeAfrica } from "react-icons/bs";
 import { FaPhoneAlt } from "react-icons/fa";
 import ContactUsForm from '../components/core/ContactPage/ContactUsForm';
 import Footer from '.././components/common/Footer'
+import ReviewSlider from '../components/common/ReviewSlider';
 
 
 // contact data
@@ -66,7 +67,9 @@ const ContactUs = () => {
             </div>
 
             {/* rating and review */}
-
+            <div className='mb-28' >
+                <ReviewSlider/>
+            </div>
         </div>
         
         {/* footer */}

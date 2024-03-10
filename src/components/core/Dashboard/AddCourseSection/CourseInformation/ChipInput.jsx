@@ -14,7 +14,7 @@ const ChipInput = ({label, name, placeholder, register, errors, setValue, getVal
 
     // storing variable in array
     const [ tagList, setTagList ] = useState([]);
-    console.log("data outside ->", tagList);
+    
 
     // on first render
     useEffect(() => {
@@ -36,7 +36,7 @@ const ChipInput = ({label, name, placeholder, register, errors, setValue, getVal
         if( event.key === 'Enter' || event.key === ',' ){
             
             event.preventDefault();
-            console.log("value of tag", tag);
+    
             //inserting tag into taglist
             if( tag && !tagList.includes(tag) ){
                 setTagList([...tagList, tag]);

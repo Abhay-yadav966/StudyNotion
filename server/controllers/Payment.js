@@ -97,7 +97,7 @@ exports.verifyPayment = async (req, res) => {
                                         .digest("hex");
 
         if( expectedSignature === razorpay_signature ){
-            console.log("arrived");
+
             // enroll student
             await enrollStudents(courses, userId, res);
 
@@ -114,7 +114,6 @@ exports.verifyPayment = async (req, res) => {
         })
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             message:"Payment Failed3",
@@ -125,7 +124,6 @@ exports.verifyPayment = async (req, res) => {
 // enroll students
 const enrollStudents = async (courses, userId, res) => {
     try{
-        console.log("backend triggered----->");
         if( !courses || !userId ){
             return res.status(400).json({
                 success:false,
@@ -173,7 +171,6 @@ const enrollStudents = async (courses, userId, res) => {
                                                     `Successfully Enrolled into ${enrolledCourse.courseName}`,
                                                     courseEnrollmentEmail(enrolledCourse.courseName, `${enrolledStudents.firstName} ${enrolledStudents.lastName}` )  );
 
-            console.log("Email send successfully", mailResponse);
         }
 
     }catch(err){

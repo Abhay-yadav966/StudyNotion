@@ -1,19 +1,30 @@
 import React from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import IconBtn from '../../../common/IconBtn'
+import {buyCourse} from '../../../../services/operations/studentFeaturesAPI'
+import { useNavigate } from 'react-router-dom';
 
 const RenderTotalAmount = () => {
 
     const {total, cart} = useSelector((state) => state.cart);
 
+    const {token} = useSelector((state) => state.auth);
+    const {user} = useSelector((state) => state.profile);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const handleBuyCourse = () => {
         const courses = cart.map((course) => course._id);
-        console.log("Bought these course:", courses);
-        //TODO: API integrate -> payment gateway tak leke jaegi
+        
+        if(token){
+          buyCourse(token, courses, user, navigate, dispatch);
+        }
+
     }
 
   return (
-    <div className='rounded-lg border border-[#2C333F] p-6 bg-[#161D29] flex flex-col gap-1 min-w-[282px] mt-10 h-fit ' >
+    <div className='rounded-lg border border-[#2C333F] p-6 bg-[#161D29] flex flex-col gap-1 max-w-[282px] min-w-[282px] mt-10 h-fit ' >
         <p className='font-semibold text-sm text-[#999DAA]' >Total:</p>
         <p className='font-semibold text-2xl text-[#FFD60A]' >₹ {total}</p>
         <div className='mt-5' >

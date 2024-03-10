@@ -14,7 +14,6 @@ exports.createSubSection = async (req, res) => {
         // fetch video
         const video = req.files.video;
 
-        console.log("Course id ->", courseId);
 
         // validation
         if( !courseId || !sectionId || !title || !description || !video ){
@@ -70,7 +69,6 @@ exports.createSubSection = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -87,12 +85,6 @@ exports.updateSubSection = async (req, res) => {
         // fetch data from req.
         const {subSectionId, title, description, courseId} = req.body;
         
-        // console.log("the video ->",video);
-        console.log("The course id ->", courseId );
-        console.log("The description ->", description);
-        console.log("the title ->", title);
-        console.log("the subsection id ->", subSectionId);
-
         const subSectionDetails = await SubSection.findById({_id:subSectionId});
  
         // checking for title
@@ -136,7 +128,6 @@ exports.updateSubSection = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,
@@ -191,7 +182,6 @@ exports.deleteSubSection = async (req, res) => {
 
     }
     catch(err){
-        console.log(err);
         return res.status(500).json({
             success:false,
             error:err.message,

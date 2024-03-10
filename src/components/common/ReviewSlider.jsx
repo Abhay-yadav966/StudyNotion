@@ -6,8 +6,9 @@ import ReactStars from 'react-rating-stars-component'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import "swiper/css/free-mode"
 
-import { Pagination , Autoplay, Navigation} from 'swiper/modules'
+import { Pagination , Autoplay, Navigation} from 'swiper/modules';
 import { apiConnector } from '../../services/apiconnector';
 
 import { ratingsEndPoints } from '../../services/apis'
@@ -38,42 +39,45 @@ const ReviewSlider = () => {
     }, [])
 
   return (
-    <div>
-      <h2>Reviews from other learners</h2>
+    <div className='w-full mt-10 ' >
+      <h2 className=' text-white text-4xl font-semibold text-center mb-20 ' >Reviews from other learners</h2>
       <Swiper
-        slidesPerView={4}
-        spaceBetween={24}
         loop={true}
-        pagination={true}
-        navigation={true}
-        className='mySwiper'
-        autoplay = {{
-          delay:2500,
-        }}
+        slidesPerView={1}
+        spaceBetween={25}
         modules={[ Autoplay, Navigation, Pagination ]}
+        pagination={true}
+        className='mySwiper'
+        autoplay={{
+          delay:2500,
+          disableOnInteraction: false,
+        }}
+        navigation={true}
         breakpoints={{
-          1024:{slidesPerView:4}
+          450:{slidesPerView:2},
+          650:{slidesPerView:3},
+          1024:{slidesPerView:4},
         }}
       >
         {
           reviews?.map((review, index) => (
             <SwiperSlide key={index} >
-              <div>
+              <div className="flex flex-col gap-3 bg-richblack-800 p-3 text-[14px] text-richblack-25" >
                 {/* image and name */}
-                <div>
-                  <img src={review?.user?.image} alt="Profile Picture" />
-                  <div>
-                    <p>{review?.user?.firstName} {review?.user?.lastName}</p>
-                    <p>{review?.course?.courseName}</p>
+                <div className="flex items-center gap-4" >
+                  <img src={review?.user?.image} alt="Profile Picture" className="h-9 w-9 rounded-full object-cover" />
+                  <div className="flex flex-col" >
+                    <p className='font-semibold text-richblack-5' >{review?.user?.firstName} {review?.user?.lastName}</p>
+                    <p className="text-[12px] font-medium text-richblack-500" >{review?.course?.courseName}</p>
                   </div>
                 </div>
 
                 {/* review */}
-                <p>{review?.review.split(" ").slice(0, truncateWords).join(" ")}</p>
+                <p className="font-medium text-richblack-25" >{review?.review.split(" ").slice(0, truncateWords).join(" ")}</p>
 
                 {/* rating and stars */}
-                <div>
-                  <p>{review?.rating}</p>
+                <div className="flex items-center gap-2 " >
+                  <p  className="font-semibold text-yellow-100" >{review?.rating}</p>
                   <ReactStars
                     count={5}
                     value={review?.rating}

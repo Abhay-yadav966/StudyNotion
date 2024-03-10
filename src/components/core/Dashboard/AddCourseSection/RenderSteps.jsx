@@ -29,7 +29,7 @@ const RenderSteps = () => {
   return (
     <div className='w-full' >
       {/* stages */}
-      <div className='flex justify-between w-[85%] mx-auto ' >
+      <div className='flex justify-between w-[500px] mx-auto ' >
         {
           steps.map((element) => (
             <div className='flex items-center ' key={element.id} >
@@ -53,7 +53,7 @@ const RenderSteps = () => {
       </div>
 
       {/* titles */}
-      <div className='flex gap-32 select-none mt-2 ' >
+      <div className='flex gap-32 select-none mt-2  mx-auto w-[550px] ' >
         {
           steps.map( (element, index) => (
             <div key={index} className='min-w-[129px]  ' >
