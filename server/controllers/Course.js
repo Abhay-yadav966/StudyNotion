@@ -5,7 +5,6 @@ const User = require("../models/User");
 const SubSection = require("../models/SubSection");
 const Section = require("../models/Section");
 const {uploadImageToCloudinary} = require("../utils/imageUploader");
-const { FaChampagneGlasses } = require("react-icons/fa6");
 const CourseProgress = require("../models/CourseProgress");
 const {convertSecondsToDuration} = require("../utils/secToDuration");
 require("dotenv").config();
