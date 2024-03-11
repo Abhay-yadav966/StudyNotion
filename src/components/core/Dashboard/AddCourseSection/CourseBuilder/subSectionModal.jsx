@@ -18,7 +18,7 @@ const SubSectionModal = ({ modalData, setModalData, add = false,  view = false, 
     const {course} = useSelector((state) => state.course);
     const {token} = useSelector((state) => state.auth);
 
-    const {
+    const { 
         register,
         handleSubmit,
         setValue,
