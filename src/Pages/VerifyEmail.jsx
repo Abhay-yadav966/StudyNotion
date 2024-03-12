@@ -51,7 +51,7 @@ const VerifyEmail = () => {
                             renderSeparator={<span className='text-richblack-5' >-</span>}
                             renderInput={(props) => <input {...props} 
                             placeholder='-'
-                            className='bg-richblack-800  text-richblack-5 mx-5 rounded-lg  '
+                            className='bg-richblack-800  text-richblack-5 mx-5 rounded-lg py-3 px-4'
                             />}
                             
                         />
