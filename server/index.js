@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin:"https://studynotion-abhay.vercel.app/",
+        origin:"https://studynotion-abhay.vercel.app",
         credentials:true,
     })
 );
