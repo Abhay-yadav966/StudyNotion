@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
     cors({
-        origin:"https://studynotion-abhay.vercel.app",
+        origin:"http://localhost:3000",
         credentials:true,
     })
 );
@@ -60,3 +60,8 @@ app.get("/", (req, res) => {
         message:"Your Server is up and Running...."
     });
 });
+
+
+
+
+// https://studynotion-abhay.vercel.app
