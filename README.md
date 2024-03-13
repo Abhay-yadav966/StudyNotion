@@ -1,7 +1,9 @@
 # StudyNotion
 Study Notion is an ED Tech (Education Technology) web application developed using the MERN stack. StudyNotion is an innovative EdTech platform where instructors can upload their courses and track their progress through visually appealing pie charts created using the Chart.js npm package. The website is built on ReactJS, TailwindCSS, and with backend support provided by NodeJS (ExpressJs) and MongoDB. For payment processing, StudyNotion utilizes Razorpay. Media data is securely stored on Cloudinary servers. Additionally, the website integrates Dicebear's API to automatically generate unique profile pictures for users.
-## Note
-This project is intended as a learning tool and can be used as a project for educational or personal projects.
+## System Architecture
+![architecture](https://github.com/Abhay-yadav966/StudyNotion/assets/115336330/4d0f609e-feac-4265-aa82-52a6a1cf5aad)
+
+
 ## Features
 - User Authentication: Study Notion provides secure user registration and authentication using JWT (JSON Web Tokens). Users can sign up, log in, and manage their profiles with ease.
 - Courses and Lessons: Instructors can create and edit created courses. Students can enroll in courses, access course materials, and track their progress.
