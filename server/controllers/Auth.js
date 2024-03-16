@@ -65,7 +65,7 @@ exports.sendOTP = async (req, res) => {
         });
     } 
     catch(err){
-        res.status(500).json({
+        return res.status(500).json({
             success:false,
             error:err.message,
             message:"Something went wrong in Otp Generator",
@@ -169,7 +169,7 @@ exports.signUp = async (req, res) => {
         });
     }
     catch(err){
-        res.status(500).json({
+        return res.status(500).json({
             success:false,
             error:err.message,
             message:"User does not registered, please try again",

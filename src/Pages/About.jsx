@@ -10,7 +10,7 @@ import ContactUsSection from '../components/core/AboutPage/ContactUsSection';
 import Footer from '../components/common/Footer'
 import ReviewSlider from '../components/common/ReviewSlider';
 
-
+  
 
 const About = () => {
   return (
