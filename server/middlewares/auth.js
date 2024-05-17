@@ -14,7 +14,7 @@ exports.auth = async (req, res, next) => {
 
         // Token missing
         if(!token){
-            return res.status(498).json({
+            return res.status(400).json({
                 success:false,
                 message:"Token is missing",
             });
@@ -26,7 +26,7 @@ exports.auth = async (req, res, next) => {
             req.user = decode;
         }
         catch(err){
-            return res.status(401).json({
+            return res.status(498).json({
                 success:false,
                 message:"Token is invalid",
             });
